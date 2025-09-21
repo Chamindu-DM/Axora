@@ -1,8 +1,13 @@
+'use client';
 import svgPaths from "../imports/svg-inz3yplkns";
-import imgArrow from "figma:asset/56c7729b6292d244b20efbc9e7add8381c95a538.png";
-import imgArrow1 from "figma:asset/77b2de1c703e15fe4ab129213cc63f44c888d2b2.png";
-import imgArrow2 from "figma:asset/c6472e0342d79f0275e2bd47a4ee9d24befc4aca.png";
-import imgArrow3 from "figma:asset/f31b8da0a1c3fbd35fdf75c89c578eff841c9206.png";
+import Image from "next/image";
+import { StaticImageData } from "next/image";
+
+// Replace Figma asset imports with regular image imports
+import linkedInIcon from "../../public/icons/linkedin.svg";
+import behanceIcon from "../../public/icons/behance.svg";
+import instagramIcon from "../../public/icons/instagram.svg";
+import facebookIcon from "../../public/icons/facebook.svg";
 
 function FooterLink({ children, icon, href }: { children: string; icon?: React.ReactNode; href?: string }) {
   const handleClick = () => {
@@ -57,7 +62,7 @@ function SocialMediaColumn() {
         <div className="basis-0 grow min-h-px min-w-px relative shrink-0 cursor-pointer hover:opacity-75 transition-opacity">
           <div className="flex flex-row items-center relative size-full">
             <div className="box-border content-stretch flex gap-2 items-center justify-start p-[4px] relative w-full">
-              <div className="bg-center bg-cover bg-no-repeat shrink-0 size-6" style={{ backgroundImage: `url('${imgArrow}')` }} />
+              <div className="bg-center bg-cover bg-no-repeat shrink-0 size-6" style={{ backgroundImage: `url('${linkedInIcon}')` }} />
               <div className="basis-0 flex flex-col font-['Instrument_Sans:Medium',_sans-serif] font-medium grow justify-center leading-[0] min-h-px min-w-px relative shrink-0 text-[16px] text-black" style={{ fontVariationSettings: "'wdth' 100" }}>
                 <p className="leading-[normal]">LinkedIn</p>
               </div>
@@ -67,7 +72,7 @@ function SocialMediaColumn() {
         <div className="basis-0 grow min-h-px min-w-px relative shrink-0 cursor-pointer hover:opacity-75 transition-opacity">
           <div className="flex flex-row items-center relative size-full">
             <div className="box-border content-stretch flex gap-2 items-center justify-start p-[4px] relative w-full">
-              <div className="bg-center bg-cover bg-no-repeat shrink-0 size-6" style={{ backgroundImage: `url('${imgArrow1}')` }} />
+              <div className="bg-center bg-cover bg-no-repeat shrink-0 size-6" style={{ backgroundImage: `url('${behanceIcon}')` }} />
               <div className="basis-0 flex flex-col font-['Instrument_Sans:Medium',_sans-serif] font-medium grow justify-center leading-[0] min-h-px min-w-px relative shrink-0 text-[16px] text-black" style={{ fontVariationSettings: "'wdth' 100" }}>
                 <p className="leading-[normal]">Behance</p>
               </div>
@@ -77,7 +82,7 @@ function SocialMediaColumn() {
         <div className="basis-0 grow min-h-px min-w-px relative shrink-0 cursor-pointer hover:opacity-75 transition-opacity">
           <div className="flex flex-row items-center relative size-full">
             <div className="box-border content-stretch flex gap-2 items-center justify-start p-[4px] relative w-full">
-              <div className="bg-center bg-cover bg-no-repeat shrink-0 size-6" style={{ backgroundImage: `url('${imgArrow2}')` }} />
+              <div className="bg-center bg-cover bg-no-repeat shrink-0 size-6" style={{ backgroundImage: `url('${instagramIcon}')` }} />
               <div className="basis-0 flex flex-col font-['Instrument_Sans:Medium',_sans-serif] font-medium grow justify-center leading-[0] min-h-px min-w-px relative shrink-0 text-[16px] text-black" style={{ fontVariationSettings: "'wdth' 100" }}>
                 <p className="leading-[normal]">Instagram</p>
               </div>
@@ -87,7 +92,7 @@ function SocialMediaColumn() {
         <div className="basis-0 grow min-h-px min-w-px relative shrink-0 cursor-pointer hover:opacity-75 transition-opacity">
           <div className="flex flex-row items-center relative size-full">
             <div className="box-border content-stretch flex gap-2 items-center justify-start p-[4px] relative w-full">
-              <div className="bg-center bg-cover bg-no-repeat shrink-0 size-6" style={{ backgroundImage: `url('${imgArrow3}')` }} />
+              <div className="bg-center bg-cover bg-no-repeat shrink-0 size-6" style={{ backgroundImage: `url('${facebookIcon}')` }} />
               <div className="basis-0 flex flex-col font-['Instrument_Sans:Medium',_sans-serif] font-medium grow justify-center leading-[0] min-h-px min-w-px relative shrink-0 text-[16px] text-black" style={{ fontVariationSettings: "'wdth' 100" }}>
                 <p className="leading-[normal]">Facebook</p>
               </div>

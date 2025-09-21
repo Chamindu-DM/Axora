@@ -1,3 +1,4 @@
+'use client';
 import svgPaths from "../imports/svg-inz3yplkns";
 import imgHeroImage from "figma:asset/b7ee92d09a9eea4fe797fe3012378e3cfef08a07.png";
 

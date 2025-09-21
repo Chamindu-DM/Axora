@@ -1,3 +1,4 @@
+'use client';
 import { useState } from "react";
 import imgServicesSection from "figma:asset/81331d0d9d1b1fb0fca778c863e500c33e127f16.png";
 

@@ -1,3 +1,4 @@
+'use client';
 import { useState } from "react";
 import imgWorkImage from "figma:asset/494aad06ff85b717bf8cbceae2e9500be1bc6733.png";
 import imgWorkImage1 from "figma:asset/d22b62265f4c60d48b59edec36d2c533644a58ff.png";
@@ -6,11 +7,12 @@ import imgWorkImage3 from "figma:asset/b31bd5e970fe3ffac659110eeea378a745ff7ed3.
 import imgWorkImage4 from "figma:asset/b9c7725f6d93f8528b997c7cef96311050774846.png";
 import imgWorkImage5 from "figma:asset/9707da56b6d66364034006512d81ed2f99694fd8.png";
 import imgServicesSection from "figma:asset/81331d0d9d1b1fb0fca778c863e500c33e127f16.png";
+import { StaticImageData } from "next/image";
 
 interface LightboxProps {
   isOpen: boolean;
   currentIndex: number;
-  images: Array<{ src: string; title: string; description: string }>;
+  images: Array<{ src: StaticImageData; title: string; description: string }>;
   onClose: () => void;
   onNext: () => void;
   onPrev: () => void;
@@ -32,7 +34,7 @@ function Lightbox({ isOpen, currentIndex, images, onClose, onNext, onPrev }: Lig
         </button>
         
         <div className="bg-white rounded-lg overflow-hidden shadow-2xl">
-          <div className="aspect-[4/3] bg-cover bg-center" style={{ backgroundImage: `url('${currentImage.src}')` }} />
+          <div className="aspect-[4/3] bg-cover bg-center" style={{ backgroundImage: `url('${currentImage.src.src}')` }} />
           <div className="p-6">
             <h3 className="text-xl font-semibold text-gray-900 mb-2">{currentImage.title}</h3>
             <p className="text-gray-600">{currentImage.description}</p>
@@ -75,8 +77,8 @@ function WorkImage({
   onClick, 
   className = "aspect-[448/568] basis-0 bg-center bg-cover bg-no-repeat content-stretch flex flex-col grow items-start justify-end min-h-px min-w-px shrink-0"
 }: { 
-  src: string; 
-  title: string; 
+  src: StaticImageData;
+  title: string;
   description: string; 
   onClick: () => void; 
   className?: string;
@@ -84,7 +86,7 @@ function WorkImage({
   return (
     <div 
       className={`${className} cursor-pointer group relative overflow-hidden rounded-lg transition-transform hover:scale-105`}
-      style={{ backgroundImage: `url('${src}')` }}
+      style={{ backgroundImage: `url('${src.src}')` }}
       onClick={onClick}
     >
       <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
