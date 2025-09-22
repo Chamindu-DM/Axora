@@ -241,7 +241,7 @@ export default function Contact() {
     }
   };
 
-  const updateFormData = (field: keyof FormData) => (value: string | File[] | null) => {
+  const updateFormData = (field: keyof FormData) => (value: string | FileList | null) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     // Clear error when user starts typing
     if (errors[field as keyof FormErrors]) {
