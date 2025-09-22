@@ -1,6 +1,7 @@
 'use client';
 import svgPaths from "../imports/svg-inz3yplkns";
-import imgHeroImage from "figma:asset/b7ee92d09a9eea4fe797fe3012378e3cfef08a07.png";
+// Replace Figma asset with a placeholder image
+const imgHeroImage = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1440&q=80";
 
 function Arrow() {
   return (

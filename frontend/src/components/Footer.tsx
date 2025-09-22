@@ -1,13 +1,11 @@
 'use client';
 import svgPaths from "../imports/svg-inz3yplkns";
-import Image from "next/image";
-import { StaticImageData } from "next/image";
 
-// Replace Figma asset imports with regular image imports
-import linkedInIcon from "../../public/icons/linkedin.svg";
-import behanceIcon from "../../public/icons/behance.svg";
-import instagramIcon from "../../public/icons/instagram.svg";
-import facebookIcon from "../../public/icons/facebook.svg";
+// Use proper SVG imports from the public folder
+const linkedInIcon = "/icons/linkedin.svg";
+const behanceIcon = "/icons/behance.svg";
+const instagramIcon = "/icons/instagram.svg";
+const facebookIcon = "/icons/facebook.svg";
 
 function FooterLink({ children, icon, href }: { children: string; icon?: React.ReactNode; href?: string }) {
   const handleClick = () => {

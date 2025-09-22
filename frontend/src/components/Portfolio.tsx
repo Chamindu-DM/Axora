@@ -1,18 +1,19 @@
 'use client';
 import { useState } from "react";
-import imgWorkImage from "figma:asset/494aad06ff85b717bf8cbceae2e9500be1bc6733.png";
-import imgWorkImage1 from "figma:asset/d22b62265f4c60d48b59edec36d2c533644a58ff.png";
-import imgWorkImage2 from "figma:asset/f3dd57fbdf37212d5690364194de02bf69abbc13.png";
-import imgWorkImage3 from "figma:asset/b31bd5e970fe3ffac659110eeea378a745ff7ed3.png";
-import imgWorkImage4 from "figma:asset/b9c7725f6d93f8528b997c7cef96311050774846.png";
-import imgWorkImage5 from "figma:asset/9707da56b6d66364034006512d81ed2f99694fd8.png";
-import imgServicesSection from "figma:asset/81331d0d9d1b1fb0fca778c863e500c33e127f16.png";
-import { StaticImageData } from "next/image";
+
+// Replace Figma assets with placeholder images
+const imgWorkImage = "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80";
+const imgWorkImage1 = "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80";
+const imgWorkImage2 = "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80";
+const imgWorkImage3 = "https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80";
+const imgWorkImage4 = "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80";
+const imgWorkImage5 = "https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80";
+const imgServicesSection = "https://images.unsplash.com/photo-1559625810-9f0c1e7da51e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1440&q=80";
 
 interface LightboxProps {
   isOpen: boolean;
   currentIndex: number;
-  images: Array<{ src: StaticImageData; title: string; description: string }>;
+  images: Array<{ src: string; title: string; description: string }>;
   onClose: () => void;
   onNext: () => void;
   onPrev: () => void;
@@ -32,9 +33,9 @@ function Lightbox({ isOpen, currentIndex, images, onClose, onNext, onPrev }: Lig
         >
           ✕
         </button>
-        
+
         <div className="bg-white rounded-lg overflow-hidden shadow-2xl">
-          <div className="aspect-[4/3] bg-cover bg-center" style={{ backgroundImage: `url('${currentImage.src.src}')` }} />
+          <div className="aspect-[4/3] bg-cover bg-center" style={{ backgroundImage: `url('${currentImage.src}')` }} />
           <div className="p-6">
             <h3 className="text-xl font-semibold text-gray-900 mb-2">{currentImage.title}</h3>
             <p className="text-gray-600">{currentImage.description}</p>
@@ -70,23 +71,23 @@ function Lightbox({ isOpen, currentIndex, images, onClose, onNext, onPrev }: Lig
   );
 }
 
-function WorkImage({ 
-  src, 
-  title, 
-  description, 
-  onClick, 
+function WorkImage({
+  src,
+  title,
+  description,
+  onClick,
   className = "aspect-[448/568] basis-0 bg-center bg-cover bg-no-repeat content-stretch flex flex-col grow items-start justify-end min-h-px min-w-px shrink-0"
-}: { 
-  src: StaticImageData;
+}: {
+  src: string;
   title: string;
-  description: string; 
-  onClick: () => void; 
+  description: string;
+  onClick: () => void;
   className?: string;
 }) {
   return (
-    <div 
+    <div
       className={`${className} cursor-pointer group relative overflow-hidden rounded-lg transition-transform hover:scale-105`}
-      style={{ backgroundImage: `url('${src.src}')` }}
+      style={{ backgroundImage: `url('${src}')` }}
       onClick={onClick}
     >
       <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
@@ -141,22 +142,6 @@ const portfolioImages = [
     description: "Multi-purpose sports facility with flexible spaces and high-performance materials."
   }
 ];
-
-function WorkItem({ images, startIndex }: { images: typeof portfolioImages; startIndex: number }) {
-  return (
-    <div className="content-stretch flex gap-1 items-start justify-start relative shrink-0 w-full">
-      {images.slice(startIndex, startIndex + 3).map((image, index) => (
-        <WorkImage
-          key={startIndex + index}
-          src={image.src}
-          title={image.title}
-          description={image.description}
-          onClick={() => {}} // Will be handled by parent
-        />
-      ))}
-    </div>
-  );
-}
 
 export default function Portfolio() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
