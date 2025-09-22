@@ -1,6 +1,5 @@
 'use client';
 import { useState } from "react";
-import svgPaths from "../imports/svg-inz3yplkns";
 
 interface ServiceDetailProps {
   title: string;
@@ -182,7 +181,7 @@ export default function ServicesDetail() {
           <div className="text-center">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready to Get Started?</h3>
             <p className="text-gray-600 mb-6">
-              Let's discuss your project requirements and how we can help bring your vision to life.
+              Let&apos;s discuss your project requirements and how we can help bring your vision to life.
             </p>
             <button 
               className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"

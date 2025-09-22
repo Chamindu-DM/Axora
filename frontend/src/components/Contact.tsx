@@ -241,7 +241,7 @@ export default function Contact() {
     }
   };
 
-  const updateFormData = (field: keyof FormData) => (value: any) => {
+  const updateFormData = (field: keyof FormData) => (value: string | File[] | null) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     // Clear error when user starts typing
     if (errors[field as keyof FormErrors]) {
@@ -261,7 +261,7 @@ export default function Contact() {
         <div className="max-w-4xl mx-auto px-8 text-center relative z-10">
           <div className="bg-green-600 text-white p-6 rounded-lg mb-8">
             <h2 className="text-3xl font-bold mb-4">Thank You!</h2>
-            <p className="text-lg">Your project brief has been submitted successfully. We'll get back to you within 24 hours.</p>
+            <p className="text-lg">Your project brief has been submitted successfully. We&apos;ll get back to you within 24 hours.</p>
           </div>
           <button 
             onClick={() => {
@@ -302,9 +302,9 @@ export default function Contact() {
             </div>
 
             <div>
-              <h2 className="text-5xl font-bold mb-6">Let's Discuss!</h2>
+              <h2 className="text-5xl font-bold mb-6">Let&apos;s Discuss!</h2>
               <p className="text-xl text-gray-300 mb-8">
-                Let's create visuals and designs that bring clarity, confidence, and impact to your construction journey.
+                Let&apos;s create visuals and designs that bring clarity, confidence, and impact to your construction journey.
               </p>
             </div>
 

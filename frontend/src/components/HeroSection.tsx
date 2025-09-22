@@ -54,7 +54,7 @@ function HeroTextContainer() {
             <p>You Can Rely On</p>
           </div>
           <div className="flex flex-col font-['Instrument_Sans:Medium',_sans-serif] font-medium justify-center leading-[0] min-w-full relative shrink-0 text-[24px] text-white tracking-[0.24px]" style={{ width: "min-content", fontVariationSettings: "'wdth' 100" }}>
-            <p className="leading-[normal]">Delivering high-quality drafting, 3D modeling, and visualization solutions for Australia's construction and architectural industries.</p>
+            <p className="leading-[normal]">Delivering high-quality drafting, 3D modeling, and visualization solutions for Australia&apos;s construction and architectural industries.</p>
           </div>
           <div className="content-stretch flex gap-2 items-start justify-start relative shrink-0">
             <HeroButton />
