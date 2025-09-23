@@ -1,0 +1,148 @@
+/* Mouse Follower Styles for About Us Section with Magnifier */
+.about-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.about-cursor.-hidden {
+  opacity: 0;
+}
+
+.about-cursor:not(.-hidden) {
+  opacity: 1;
+}
+
+.about-cursor-inner {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+}
+
+/* Magnifier state */
+.about-cursor.-magnifier .about-cursor-inner {
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Text Magnifier Styles - No backdrop-filter to avoid blur */
+.text-magnifier {
+  position: absolute !important;
+  width: 200px !important;
+  height: 200px !important;
+  border-radius: 50% !important;
+  pointer-events: none !important;
+  z-index: 10000 !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+  overflow: hidden !important;
+  background: rgba(0, 0, 0, 0.8) !important;
+  border: 3px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+.magnified-text {
+  position: absolute !important;
+  white-space: pre-wrap !important;
+  font-size: 1.8em !important;
+  color: white !important;
+  font-weight: 500 !important;
+  transform: translate(-50%, -50%) !important;
+  left: 50% !important;
+  top: 50% !important;
+  text-align: center !important;
+  width: 180px !important;
+  height: 180px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1.2 !important;
+  padding: 10px !important;
+  box-sizing: border-box !important;
+}
+
+/* Letter animation styles */
+.letter-span {
+  display: inline;
+  transition: opacity 0.3s ease;
+  color: white;
+}
+
+.space-span {
+  display: inline;
+}
+
+/* Ensure proper stacking context */
+[data-name="About Description"] {
+  position: relative;
+}
+
+[data-name="About Description"] p {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hide default cursor in about section */
+.cursor-none {
+  cursor: none !important;
+}
+
+/* Smooth transitions for the cursor */
+.about-cursor {
+  will-change: transform;
+}
+
+.about-cursor-inner {
+  will-change: transform, width, height;
+}
+
+/* Responsive cursor and magnifier sizing */
+@media (max-width: 640px) {
+  .about-cursor-inner {
+    width: 150px;
+    height: 150px;
+  }
+
+  .about-cursor.-magnifier .about-cursor-inner {
+    width: 150px;
+    height: 150px;
+  }
+
+  .text-magnifier {
+    width: 150px !important;
+    height: 150px !important;
+  }
+
+  .magnified-text {
+    font-size: 1.4em !important;
+    width: 130px !important;
+    height: 130px !important;
+  }
+}
+
+/* Ensure text is properly positioned for animations */
+.letter-span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Animation performance optimization */
+.letter-span {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Ensure the About section has proper isolation */
+#about {
+  isolation: isolate;
+}
