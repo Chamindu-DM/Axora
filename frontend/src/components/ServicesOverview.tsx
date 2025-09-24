@@ -88,19 +88,6 @@ export default function ServicesOverview() {
               />
             ))}
           </div>
-          <div className="mt-8 text-center">
-            <button 
-              className="bg-white text-black px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
-              onClick={() => {
-                const element = document.querySelector('#services-detail');
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-            >
-              View Detailed Services
-            </button>
-          </div>
         </div>
       </div>
     </div>

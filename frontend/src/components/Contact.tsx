@@ -81,7 +81,7 @@ function FormField({
   options?: string[];
   isTextarea?: boolean;
 }) {
-  const baseClasses = "w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all";
+  const baseClasses = "w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all font-['Instrument_Sans',_sans-serif]";
   const errorClasses = error ? "border-red-500 focus:ring-red-500" : "";
 
   if (type === "select") {
@@ -251,7 +251,7 @@ export default function Contact() {
 
   if (isSubmitted) {
     return (
-      <div id="contact" className="bg-black text-white py-20 relative overflow-hidden">
+      <div id="contact" className="bg-black text-white py-20 relative overflow-hidden font-['Instrument_Sans',_sans-serif] z-[5]">
         <div className="absolute flex items-center justify-center right-0 size-[2000px] translate-y-[-50%]" style={{ top: "calc(50% + 0.946px)" }}>
           <div className="flex-none scale-y-[-100%]">
             <BackgroundImage />
@@ -260,8 +260,8 @@ export default function Contact() {
         
         <div className="max-w-4xl mx-auto px-8 text-center relative z-10">
           <div className="bg-green-600 text-white p-6 rounded-lg mb-8">
-            <h2 className="text-3xl font-bold mb-4">Thank You!</h2>
-            <p className="text-lg">Your project brief has been submitted successfully. We&apos;ll get back to you within 24 hours.</p>
+            <h2 className="text-3xl font-bold mb-4 font-['Instrument_Sans',_sans-serif]">Thank You!</h2>
+            <p className="text-lg font-['Instrument_Sans',_sans-serif]">Your project brief has been submitted successfully. We&apos;ll get back to you within 24 hours.</p>
           </div>
           <button 
             onClick={() => {
@@ -275,7 +275,7 @@ export default function Contact() {
                 files: null
               });
             }}
-            className="bg-white text-black px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+            className="bg-white text-black px-6 py-3 rounded-lg font-['Instrument_Sans',_sans-serif] font-medium hover:bg-gray-100 transition-colors"
           >
             Submit Another Project
           </button>
@@ -285,33 +285,33 @@ export default function Contact() {
   }
 
   return (
-    <div id="contact" className="bg-black text-white py-20 relative overflow-hidden">
+    <div id="contact" className="bg-black text-white py-20 relative overflow-hidden font-['Instrument_Sans',_sans-serif] z-[5]">
       <div className="absolute flex items-center justify-center right-0 size-[2000px] translate-y-[-50%]" style={{ top: "calc(50% + 0.946px)" }}>
         <div className="flex-none scale-y-[-100%]">
           <BackgroundImage />
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-8 relative z-10">
+      <div className="w-full mx-auto px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Left Column - Contact Info */}
           <div className="space-y-8">
             <div className="flex items-center gap-3 mb-8">
               <Logo />
-              <h1 className="text-3xl font-bold">Axora</h1>
+              <h1 className="text-3xl font-bold font-['Instrument_Sans',_sans-serif]">Axora</h1>
             </div>
 
             <div>
-              <h2 className="text-5xl font-bold mb-6">Let&apos;s Discuss!</h2>
-              <p className="text-xl text-gray-300 mb-8">
+              <h2 className="text-5xl font-bold mb-6 font-['Instrument_Sans',_sans-serif]">Let&apos;s Discuss!</h2>
+              <p className="text-xl text-gray-300 mb-8 font-['Instrument_Sans',_sans-serif]">
                 Let&apos;s create visuals and designs that bring clarity, confidence, and impact to your construction journey.
               </p>
             </div>
 
             <div className="space-y-6">
               <div>
-                <h3 className="text-lg font-semibold text-white uppercase mb-4">Contact Information</h3>
-                <div className="space-y-3">
+                <h3 className="text-lg font-semibold text-white uppercase mb-4 font-['Instrument_Sans',_sans-serif]">Contact Information</h3>
+                <div className="space-y-3 font-['Instrument_Sans',_sans-serif]">
                   <p className="text-2xl">info@axoraeng.com.au</p>
                   <p className="text-2xl">+61 434 013 836</p>
                   <p className="text-2xl">Melbourne, Australia</p>
@@ -319,8 +319,8 @@ export default function Contact() {
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-white uppercase mb-4">Business Hours</h3>
-                <div className="space-y-2 text-gray-300">
+                <h3 className="text-lg font-semibold text-white uppercase mb-4 font-['Instrument_Sans',_sans-serif]">Business Hours</h3>
+                <div className="space-y-2 text-gray-300 font-['Instrument_Sans',_sans-serif]">
                   <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
                   <p>Saturday: 10:00 AM - 4:00 PM</p>
                   <p>Sunday: Closed</p>
@@ -331,8 +331,8 @@ export default function Contact() {
 
           {/* Right Column - Contact Form */}
           <div className="bg-white rounded-2xl p-8 text-black">
-            <h3 className="text-2xl font-bold mb-6">Send Project Brief</h3>
-            
+            <h3 className="text-2xl font-bold mb-6 font-['Instrument_Sans',_sans-serif]">Send Project Brief</h3>
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">
                 <FormField
@@ -386,12 +386,12 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-black text-white py-4 px-6 rounded-lg font-semibold hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full bg-black text-white py-4 px-6 rounded-lg font-['Instrument_Sans',_sans-serif] font-semibold hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 {isSubmitting ? (
                   <>
                     <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
-                    Sending...
+                    <span className="font-['Instrument_Sans',_sans-serif]">Sending...</span>
                   </>
                 ) : (
                   "Send Project Brief"
