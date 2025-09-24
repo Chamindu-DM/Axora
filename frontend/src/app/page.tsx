@@ -14,8 +14,8 @@ export default function App() {
             <HeroSection />
             <AboutUs />
             <ServicesOverview />
-            <ServicesDetail />
             <Portfolio />
+            <ServicesDetail />
             <Contact />
             <Footer />
         </div>

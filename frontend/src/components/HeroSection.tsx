@@ -49,7 +49,7 @@ function HeroTextContainer() {
     <div className="max-w-[990px] relative rounded-[8px] shrink-0 w-full" data-name="Hero Text Container">
       <div className="max-w-inherit relative size-full">
         <div className="box-border content-stretch flex flex-col gap-6 items-start justify-start max-w-inherit p-[16px] relative w-full">
-          <div className="flex flex-col font-['Instrument_Sans:Bold',_sans-serif] font-['Rethink_Sans:Bold',_sans-serif] font-bold justify-center leading-[80px] min-w-full relative shrink-0 text-[64px] text-white tracking-[-0.64px]" style={{ width: "min-content", fontVariationSettings: "'wdth' 100" }}>
+          <div className="flex flex-col font-['Rethink_Sans'] font-bold justify-center leading-[80px] min-w-full relative shrink-0 text-[64px] text-white tracking-[-0.64px]" style={{ width: "min-content", fontVariationSettings: "'wdth' 100" }}>
             <p className="mb-0">{`Engineering Design & Visualization`}</p>
             <p>You Can Rely On</p>
           </div>

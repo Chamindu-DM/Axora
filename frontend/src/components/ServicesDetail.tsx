@@ -153,15 +153,10 @@ export default function ServicesDetail() {
   const [activeService, setActiveService] = useState<number>(0);
 
   return (
-    <div id="services-detail" className="bg-gray-50 py-20">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Detailed Service Offerings</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Explore our comprehensive range of engineering design and visualization services. 
-            Click on each service to learn more about what we offer.
-          </p>
-        </div>
+    <div data-layer="Portfolio Section" className="PortfolioSection self-stretch px-8 py-20 bg-gray-200 inline-flex flex-col justify-center items-center gap-8">
+        <div data-layer="About Title" className="AboutTitle self-stretch justify-center text-black text-base font-medium font-['Instrument_Sans'] uppercase">The Axora Engineering Advantage</div>
+        <div data-layer="Portfolio Subtitle" className="PortfolioSubtitle self-stretch justify-center text-black text-6xl font-semibold font-['Instrument_Sans'] uppercase">Why leading architects, builders, and developers trust us.</div>
+        <div className="w-full mx-auto px-8">
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {serviceDetails.map((service, index) => (
@@ -197,6 +192,6 @@ export default function ServicesDetail() {
           </div>
         </div>
       </div>
-    </div>
+    </div> 
   );
 }
