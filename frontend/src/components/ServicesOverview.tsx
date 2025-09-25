@@ -1,7 +1,17 @@
 'use client';
 import { useState } from "react";
-// Replace Figma asset with a placeholder image
-const imgServicesSection = "https://images.unsplash.com/photo-1559625810-9f0c1e7da51e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1440&q=80";
+
+// Background images for each service
+const serviceBackgrounds = [
+  "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // CAD Drafting - architectural drawings
+  "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // 3D Modeling - modern building
+  "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1740&auto=format&fit=crop", // Rendering - architectural visualization
+  "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=1740&auto=format&fit=crop", // BOQ & Estimating - construction site
+  "https://images.unsplash.com/photo-1581094289475-9a2a8dc775d2?q=80&w=1740&auto=format&fit=crop"  // Structural Analysis - steel structure
+];
+
+// Default background image
+const defaultBackground = "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
 interface ServiceItemProps {
   number: string;
@@ -69,8 +79,19 @@ export default function ServicesOverview() {
     setExpandedService(expandedService === index ? null : index);
   };
 
+  // Get current background image
+  const currentBackground = expandedService !== null ? serviceBackgrounds[expandedService] : defaultBackground;
+
   return (
-    <div id="services" className="bg-[position:0%_0%,_50%_50%] bg-[rgba(0,0,0,0.7)] bg-size-[auto,cover] relative shrink-0 w-full z-[4]" data-name="Services Section" style={{ backgroundImage: `url('${imgServicesSection}')` }}>
+    <div
+      id="services"
+      className="relative shrink-0 w-full z-[4] bg-cover bg-center bg-no-repeat transition-all duration-700 ease-in-out"
+      data-name="Services Section"
+      style={{ backgroundImage: `url('${currentBackground}')` }}
+    >
+      {/* Black overlay for better text visibility */}
+      <div className="absolute inset-0 bg-black bg-opacity-10 transition-opacity duration-700"></div>
+
       <div className="flex flex-col items-center justify-center relative size-full">
         <div className="box-border content-stretch flex flex-col gap-8 items-center justify-center px-8 py-20 relative w-full">
           <div className="flex flex-col font-['Instrument_Sans:Medium',_sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[16px] text-white uppercase w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
