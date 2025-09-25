@@ -152,7 +152,7 @@ export default function Footer() {
           {/* Bottom Row */}
           <div className="content-stretch flex gap-16 items-end justify-start relative shrink-0 w-full">
             <div className="basis-0 flex flex-col font-['Rethink_Sans:SemiBold',_sans-serif] font-semibold grow justify-center leading-[0] min-h-px min-w-px relative shrink-0 text-[14px] text-black tracking-[-0.14px]">
-              <p className="leading-[normal]">©2025 Axora. All Right Reserved</p>
+              <p className="leading-[normal] font-['Instrument_Sans:Medium',_sans-serif]">©2025 Axora. All Right Reserved</p>
             </div>
             <SocialMediaColumn />
           </div>

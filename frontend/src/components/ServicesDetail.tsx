@@ -90,8 +90,8 @@ const advantageItems = [
 export default function ServicesDetail() {
   return (
     <div data-layer="Portfolio Section" className="PortfolioSection self-stretch px-8 py-20 bg-gray-200 flex flex-col justify-center items-center gap-8">
-        <div data-layer="About Title" className="AboutTitle self-stretch justify-center text-black text-base font-medium font-['Instrument_Sans'] uppercase">The Axora Engineering Advantage</div>
-        <div data-layer="Portfolio Subtitle" className="PortfolioSubtitle self-stretch justify-center text-black text-6xl font-semibold font-['Instrument_Sans'] uppercase mb-8">Why leading architects, builders, and developers trust us.</div>
+        <div data-layer="About Title" className="AboutTitle px-8 self-stretch justify-center text-black text-base font-medium font-['Instrument_Sans'] uppercase">The Axora Engineering Advantage</div>
+        <div data-layer="Portfolio Subtitle" className="PortfolioSubtitle self-stretch px-8 justify-center text-black text-6xl font-semibold font-['Instrument_Sans'] uppercase mb-8">Why leading architects, builders, and developers trust us.</div>
 
         <div data-layer="Advantage Container" className="self-stretch inline-flex justify-center items-start gap-4 flex-wrap content-start">
           {advantageItems.map((item, index) => (

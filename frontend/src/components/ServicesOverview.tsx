@@ -3,11 +3,11 @@ import { useState } from "react";
 
 // Background images for each service
 const serviceBackgrounds = [
-  "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // CAD Drafting - architectural drawings
-  "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // 3D Modeling - modern building
-  "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1740&auto=format&fit=crop", // Rendering - architectural visualization
-  "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=1740&auto=format&fit=crop", // BOQ & Estimating - construction site
-  "https://images.unsplash.com/photo-1581094289475-9a2a8dc775d2?q=80&w=1740&auto=format&fit=crop"  // Structural Analysis - steel structure
+  "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3", // CAD Drafting - architectural drawings
+  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3", // 3D Modeling - modern building
+  "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3", // Rendering - architectural visualization
+  "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3", // BOQ & Estimating - construction site
+  "https://images.unsplash.com/photo-1581094289475-9a2a8dc775d2?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3"  // Structural Analysis - steel structure
 ];
 
 // Default background image
@@ -94,7 +94,7 @@ export default function ServicesOverview() {
 
       <div className="flex flex-col items-center justify-center relative size-full">
         <div className="box-border content-stretch flex flex-col gap-8 items-center justify-center px-8 py-20 relative w-full">
-          <div className="flex flex-col font-['Instrument_Sans:Medium',_sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[16px] text-white uppercase w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <div className="px-8 flex flex-col font-['Instrument_Sans:Medium',_sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[16px] text-white uppercase w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
             <p className="leading-[normal]">Our 3D Rendering Services</p>
           </div>
           <div className="flex flex-col gap-8 w-full max-w-6xl">

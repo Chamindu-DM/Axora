@@ -301,7 +301,7 @@ export default function AboutUs() {
     <div id="about" className="bg-black relative shrink-0 w-full z-[5]">
       <div className="flex flex-col items-center justify-center overflow-clip relative size-full">
         <div className="box-border content-stretch flex flex-col gap-8 isolate items-center justify-center px-8 py-[200px] relative w-full">
-          <div className="flex flex-col font-['Instrument_Sans:Medium',_sans-serif] font-medium justify-center leading-[0] min-w-full relative shrink-0 text-[16px] text-white uppercase z-[3]" style={{ width: "min-content", fontVariationSettings: "'wdth' 100" }}>
+          <div className="px-8 flex flex-col font-['Instrument_Sans:Medium',_sans-serif] font-medium justify-center leading-[0] min-w-full relative shrink-0 text-[16px] text-white uppercase z-[3]" style={{ width: "min-content", fontVariationSettings: "'wdth' 100" }}>
             <p className="leading-[normal]">ABOUT</p>
           </div>
           <AboutDescription />

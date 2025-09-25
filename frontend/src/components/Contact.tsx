@@ -285,7 +285,7 @@ export default function Contact() {
   }
 
   return (
-    <div id="contact" className="bg-black text-white py-20 relative overflow-hidden font-['Instrument_Sans',_sans-serif] z-[5]">
+    <div id="contact" className="px-8 bg-black text-white py-20 relative overflow-hidden font-['Instrument_Sans',_sans-serif] z-[5]">
       <div className="absolute flex items-center justify-center right-0 size-[2000px] translate-y-[-50%]" style={{ top: "calc(50% + 0.946px)" }}>
         <div className="flex-none scale-y-[-100%]">
           <BackgroundImage />

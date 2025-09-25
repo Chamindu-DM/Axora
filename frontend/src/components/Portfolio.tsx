@@ -76,24 +76,69 @@ function WorkImage({
   title,
   description,
   onClick,
-  className = "aspect-[448/568] basis-0 bg-center bg-cover bg-no-repeat content-stretch flex flex-col grow items-start justify-end min-h-px min-w-px shrink-0"
+  className = "",
+  location,
+  client,
+  year
 }: {
   src: string;
   title: string;
   description: string;
   onClick: () => void;
   className?: string;
+  location?: string;
+  client?: string;
+  year?: string;
 }) {
   return (
     <div
-      className={`${className} cursor-pointer group relative overflow-hidden rounded-lg transition-transform hover:scale-105`}
-      style={{ backgroundImage: `url('${src}')` }}
+      className={`WorkImage ${className} cursor-pointer group relative overflow-hidden`}
       onClick={onClick}
     >
-      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
-        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-center p-4">
-          <h3 className="text-lg font-semibold mb-2">{title}</h3>
-          <p className="text-sm">{description}</p>
+      <img
+        data-layer="Work Image"
+        data-hover="off"
+        className="w-full h-full object-cover transition-all duration-300"
+        src={src}
+        alt={title}
+        onMouseEnter={(e) => {
+          e.currentTarget.setAttribute('data-hover', 'on');
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.setAttribute('data-hover', 'off');
+        }}
+      />
+
+      {/* Project Info Overlay */}
+      <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end">
+        <div data-layer="Project Info" className="ProjectInfo self-stretch p-4 bg-black/60 inline-flex justify-start items-start gap-4">
+          <div data-layer="Project Details" className="ProjectDetails flex-1 inline-flex flex-col justify-start items-start gap-4">
+            <div data-layer="Project Title" className="ProjectTitle self-stretch justify-center text-white text-2xl font-medium font-['Rethink_Sans'] tracking-tight">{title}</div>
+            <div data-layer="Project Metadata" className="ProjectMetadata self-stretch flex flex-col justify-start items-start gap-1">
+              {location && (
+                <div data-layer="Location Info" className="LocationInfo self-stretch inline-flex justify-start items-start gap-1">
+                  <div data-layer="Location Label" className="LocationLabel justify-center text-white/50 text-base font-medium font-['Instrument_Sans']">Location:</div>
+                  <div data-layer="Location Value" className="LocationValue flex-1 justify-center text-white text-base font-medium font-['Instrument_Sans']">{location}</div>
+                </div>
+              )}
+              {client && (
+                <div data-layer="Client Info" className="ClientInfo self-stretch inline-flex justify-start items-start gap-1">
+                  <div data-layer="Client Label" className="ClientLabel justify-center text-white/50 text-base font-medium font-['Instrument_Sans']">Client:</div>
+                  <div data-layer="Client Value" className="ClientValue flex-1 justify-center text-white text-base font-medium font-['Instrument_Sans']">{client}</div>
+                </div>
+              )}
+            </div>
+          </div>
+          <div data-layer="Year Container" className="YearContainer w-10 self-stretch inline-flex flex-col justify-between items-center">
+            <div data-layer="Arrow Icon" className="ArrowIcon w-12 h-12 relative overflow-hidden">
+              <svg className="w-7 h-7 absolute left-[10.90px] top-[10.88px] text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+              </svg>
+            </div>
+            {year && (
+              <div data-layer="Year" className="Year self-stretch justify-center text-white/50 text-base font-medium font-['Instrument_Sans']">{year}</div>
+            )}
+          </div>
         </div>
       </div>
     </div>
@@ -103,57 +148,73 @@ function WorkImage({
 const portfolioImages = [
   {
     src: imgWorkImage,
-    title: "Residential Complex",
-    description: "Modern residential development with sustainable design features and innovative architectural elements."
+    title: "Hidden Hills",
+    description: "Modern residential development with sustainable design features and innovative architectural elements.",
+    location: "California, USA",
+    client: "Bittoni",
+    year: "2024"
   },
   {
     src: imgWorkImage1,
-    title: "Commercial Office Building",
-    description: "State-of-the-art office complex featuring glass facades and energy-efficient systems."
+    title: "Skyline Tower",
+    description: "State-of-the-art office complex featuring glass facades and energy-efficient systems.",
+    location: "New York, USA",
+    client: "Urban Developers",
+    year: "2023"
   },
   {
     src: imgWorkImage2,
-    title: "Industrial Warehouse",
-    description: "Large-scale industrial facility with optimized structural design for maximum efficiency."
+    title: "Industrial Hub",
+    description: "Large-scale industrial facility with optimized structural design for maximum efficiency.",
+    location: "Melbourne, AUS",
+    client: "Manufacturing Co.",
+    year: "2024"
   },
   {
     src: imgServicesSection,
-    title: "Mixed-Use Development",
-    description: "Integrated commercial and residential spaces with contemporary design aesthetics."
+    title: "Mixed Plaza",
+    description: "Integrated commercial and residential spaces with contemporary design aesthetics.",
+    location: "Sydney, AUS",
+    client: "Metro Group",
+    year: "2023"
   },
   {
     src: imgWorkImage3,
-    title: "Educational Facility",
-    description: "Modern school building designed for collaborative learning and community engagement."
+    title: "Learning Center",
+    description: "Modern school building designed for collaborative learning and community engagement.",
+    location: "Brisbane, AUS",
+    client: "Education Board",
+    year: "2024"
   },
   {
     src: imgWorkImage4,
-    title: "Healthcare Center",
-    description: "Medical facility with patient-centered design and advanced technical infrastructure."
+    title: "Medical Complex",
+    description: "Medical facility with patient-centered design and advanced technical infrastructure.",
+    location: "Perth, AUS",
+    client: "Health Services",
+    year: "2023"
   },
   {
     src: imgWorkImage5,
-    title: "Retail Shopping Center",
-    description: "Contemporary retail complex with innovative layout and customer-focused design."
+    title: "Retail District",
+    description: "Contemporary retail complex with innovative layout and customer-focused design.",
+    location: "Adelaide, AUS",
+    client: "Retail Partners",
+    year: "2024"
   },
   {
     src: imgWorkImage2,
-    title: "Sports Complex",
-    description: "Multi-purpose sports facility with flexible spaces and high-performance materials."
+    title: "Sports Arena",
+    description: "Multi-purpose sports facility with flexible spaces and high-performance materials.",
+    location: "Gold Coast, AUS",
+    client: "Sports Authority",
+    year: "2023"
   }
 ];
 
 export default function Portfolio() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [selectedCategory, setSelectedCategory] = useState("all");
-
-  const categories = [
-    { id: "all", name: "All Projects" },
-    { id: "residential", name: "Residential" },
-    { id: "commercial", name: "Commercial" },
-    { id: "industrial", name: "Industrial" }
-  ];
 
   const openLightbox = (index: number) => {
     setCurrentImageIndex(index);
@@ -173,53 +234,102 @@ export default function Portfolio() {
   };
 
   return (
-    <div id="portfolio" className="bg-white relative shrink-0 w-full z-[3]">
-      <div className="flex flex-col items-center justify-center relative size-full">
-        <div className="box-border content-stretch flex flex-col gap-8 items-center justify-center px-8 py-20 relative w-full">
-          <div className="text-center mb-8">
-            <div className="flex flex-col font-['Instrument_Sans:SemiBold',_sans-serif] font-semibold justify-center leading-[normal] relative shrink-0 text-[64px] text-black uppercase w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
-              <p className="mb-0">Showcasing the craft</p>
-              <p>behind our designs.</p>
-            </div>
+    <div data-layer="Portfolio Section" className="PortfolioSection self-stretch px-8 pt-30 pb-20 bg-white inline-flex flex-col justify-start items-start gap-8">
+      <div data-layer="Portfolio Title" className="PortfolioTitle self-stretch px-8 justify-center text-black text-6xl font-semibold font-['Instrument_Sans'] uppercase mb-8">
+        Showcasing the craft<br/>behind our designs.
+      </div>
 
-            {/* Category Filter */}
-            <div className="flex flex-wrap justify-center gap-4 mt-8">
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setSelectedCategory(category.id)}
-                  className={`px-6 py-2 rounded-full font-medium transition-all ${
-                    selectedCategory === category.id
-                      ? 'bg-black text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  {category.name}
-                </button>
-              ))}
-            </div>
-          </div>
+      <div data-layer="Works Container" className="WorksContainer self-stretch flex flex-col justify-start items-start gap-1">
+        {/* First Row - 3 equal images */}
+        <div data-layer="Work Item" className="WorkItem self-stretch inline-flex justify-start items-start gap-1">
+          <WorkImage
+            src={portfolioImages[0].src}
+            title={portfolioImages[0].title}
+            description={portfolioImages[0].description}
+            location={portfolioImages[0].location}
+            client={portfolioImages[0].client}
+            year={portfolioImages[0].year}
+            onClick={() => openLightbox(0)}
+            className="flex-1 h-[578px] inline-flex flex-col justify-end items-start"
+          />
+          <WorkImage
+            src={portfolioImages[1].src}
+            title={portfolioImages[1].title}
+            description={portfolioImages[1].description}
+            location={portfolioImages[1].location}
+            client={portfolioImages[1].client}
+            year={portfolioImages[1].year}
+            onClick={() => openLightbox(1)}
+            className="flex-1 h-[578px] inline-flex flex-col justify-end items-start"
+          />
+          <WorkImage
+            src={portfolioImages[2].src}
+            title={portfolioImages[2].title}
+            description={portfolioImages[2].description}
+            location={portfolioImages[2].location}
+            client={portfolioImages[2].client}
+            year={portfolioImages[2].year}
+            onClick={() => openLightbox(2)}
+            className="flex-1 h-[578px] inline-flex flex-col justify-end items-start"
+          />
+        </div>
 
-          {/* Portfolio Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full max-w-7xl">
-            {portfolioImages.map((image, index) => (
-              <WorkImage
-                key={index}
-                src={image.src}
-                title={image.title}
-                description={image.description}
-                onClick={() => openLightbox(index)}
-                className="aspect-[4/3] bg-center bg-cover bg-no-repeat rounded-lg"
-              />
-            ))}
-          </div>
+        {/* Second Row - 2 larger images */}
+        <div data-layer="Work Item" className="WorkItem self-stretch inline-flex justify-start items-start gap-1">
+          <WorkImage
+            src={portfolioImages[3].src}
+            title={portfolioImages[3].title}
+            description={portfolioImages[3].description}
+            location={portfolioImages[3].location}
+            client={portfolioImages[3].client}
+            year={portfolioImages[3].year}
+            onClick={() => openLightbox(3)}
+            className="flex-1 h-[870px] inline-flex flex-col justify-end items-start"
+          />
+          <WorkImage
+            src={portfolioImages[4].src}
+            title={portfolioImages[4].title}
+            description={portfolioImages[4].description}
+            location={portfolioImages[4].location}
+            client={portfolioImages[4].client}
+            year={portfolioImages[4].year}
+            onClick={() => openLightbox(4)}
+            className="flex-1 h-[870px] inline-flex flex-col justify-end items-start"
+          />
+        </div>
 
-          {/* Load More Button */}
-          <div className="mt-12">
-            <button className="bg-black text-white px-8 py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors">
-              Load More Projects
-            </button>
-          </div>
+        {/* Third Row - 3 equal images */}
+        <div data-layer="Work Item" className="WorkItem self-stretch inline-flex justify-start items-start gap-1">
+          <WorkImage
+            src={portfolioImages[5].src}
+            title={portfolioImages[5].title}
+            description={portfolioImages[5].description}
+            location={portfolioImages[5].location}
+            client={portfolioImages[5].client}
+            year={portfolioImages[5].year}
+            onClick={() => openLightbox(5)}
+            className="flex-1 h-[578px] inline-flex flex-col justify-end items-start"
+          />
+          <WorkImage
+            src={portfolioImages[6].src}
+            title={portfolioImages[6].title}
+            description={portfolioImages[6].description}
+            location={portfolioImages[6].location}
+            client={portfolioImages[6].client}
+            year={portfolioImages[6].year}
+            onClick={() => openLightbox(6)}
+            className="flex-1 h-[578px] inline-flex flex-col justify-end items-start"
+          />
+          <WorkImage
+            src={portfolioImages[7].src}
+            title={portfolioImages[7].title}
+            description={portfolioImages[7].description}
+            location={portfolioImages[7].location}
+            client={portfolioImages[7].client}
+            year={portfolioImages[7].year}
+            onClick={() => openLightbox(7)}
+            className="flex-1 h-[578px] inline-flex flex-col justify-end items-start"
+          />
         </div>
       </div>
 
