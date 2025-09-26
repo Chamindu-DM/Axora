@@ -67,9 +67,9 @@ function HeroTextContainer() {
 
 function HeroImage() {
   return (
-    <div className="aspect-[4/3] sm:aspect-[16/10] lg:aspect-[1440/693.223] bg-[position:0%_0%,_50%_50%] bg-[rgba(0,0,0,0.5)] bg-size-[auto,cover] relative rounded-[16px] shrink-0 w-full" data-name="Hero Image" style={{ backgroundImage: `url('${imgHeroImage}')` }}>
+    <div className="h-full w-full bg-[position:0%_0%,_50%_50%] bg-[rgba(0,0,0,0.5)] bg-size-[auto,cover] relative rounded-[16px] shrink-0" data-name="Hero Image" style={{ backgroundImage: `url('${imgHeroImage}')` }}>
       <div className="flex flex-col justify-end relative size-full">
-        <div className="aspect-[4/3] sm:aspect-[16/10] lg:aspect-[1440/693.223] box-border content-stretch flex flex-col gap-2 items-start justify-end p-[8px] relative size-full">
+        <div className="box-border content-stretch flex flex-col gap-2 items-start justify-end p-[8px] relative size-full">
           <HeroTextContainer />
         </div>
       </div>
@@ -79,9 +79,9 @@ function HeroImage() {
 
 export default function HeroSection() {
   return (
-    <div id="hero" className="relative shrink-0 w-full z-[6]" data-name="Hero Section">
+    <div id="hero" className="relative shrink-0 w-full z-[6] h-screen min-h-screen" data-name="Hero Section">
       <div className="relative size-full">
-        <div className="box-border content-stretch flex flex-col gap-2 items-start justify-start pb-4 pt-1 px-2 sm:px-4 relative w-full">
+        <div className="box-border content-stretch flex flex-col gap-2 items-start justify-start pb-4 pt-1 px-2 sm:px-4 relative w-full h-full">
           <HeroImage />
         </div>
       </div>

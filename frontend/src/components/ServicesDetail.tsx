@@ -89,11 +89,11 @@ const advantageItems = [
 
 export default function ServicesDetail() {
   return (
-    <div data-layer="Portfolio Section" className="PortfolioSection self-stretch px-8 py-20 bg-gray-200 flex flex-col justify-center items-center gap-8">
-        <div data-layer="About Title" className="AboutTitle px-8 self-stretch justify-center text-black text-base font-medium font-['Instrument_Sans'] uppercase">The Axora Engineering Advantage</div>
-        <div data-layer="Portfolio Subtitle" className="PortfolioSubtitle self-stretch px-8 justify-center text-black text-6xl font-semibold font-['Instrument_Sans'] uppercase mb-8">Why leading architects, builders, and developers trust us.</div>
+    <div data-layer="Portfolio Section" className="PortfolioSection self-stretch px-4 md:px-8 py-12 md:py-20 bg-gray-200 flex flex-col justify-center items-center gap-6 md:gap-8">
+        <div data-layer="About Title" className="AboutTitle px-4 md:px-8 self-stretch justify-center text-black text-sm md:text-base font-medium font-['Instrument_Sans'] uppercase">The Axora Engineering Advantage</div>
+        <div data-layer="Portfolio Subtitle" className="PortfolioSubtitle self-stretch px-4 md:px-8 justify-center text-black text-3xl md:text-4xl lg:text-6xl font-semibold font-['Instrument_Sans'] uppercase mb-4 md:mb-8 leading-tight">Why leading architects, builders, and developers trust us.</div>
 
-        <div data-layer="Advantage Container" className="self-stretch inline-flex justify-center items-start gap-4 flex-wrap content-start">
+        <div data-layer="Advantage Container" className="self-stretch inline-flex justify-center items-start gap-4 flex-wrap content-start px-4 md:px-0">
           {advantageItems.map((item, index) => (
             <AdvantageItem
               key={index}
