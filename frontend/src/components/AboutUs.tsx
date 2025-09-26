@@ -299,14 +299,14 @@ function GoldenRatioCircles() {
 export default function AboutUs() {
   return (
     <div id="about" className="bg-black relative shrink-0 w-full z-[5]">
-      <div className="flex flex-col items-center justify-center overflow-clip relative size-full">
-        <div className="box-border content-stretch flex flex-col gap-8 isolate items-center justify-center px-8 py-[200px] relative w-full">
-          <div className="px-8 flex flex-col font-['Instrument_Sans:Medium',_sans-serif] font-medium justify-center leading-[0] min-w-full relative shrink-0 text-[16px] text-white uppercase z-[3]" style={{ width: "min-content", fontVariationSettings: "'wdth' 100" }}>
+      <div className="flex flex-col items-center justify-center overflow-hidden relative size-full">
+        <div className="box-border content-stretch flex flex-col gap-6 md:gap-8 isolate items-center justify-center px-4 md:px-8 py-[100px] md:py-[150px] lg:py-[200px] relative w-full">
+          <div className="px-4 md:px-8 flex flex-col font-['Instrument_Sans:Medium',_sans-serif] font-medium justify-center leading-[0] min-w-full relative shrink-0 text-[14px] md:text-[16px] text-white uppercase z-[3]" style={{ width: "min-content", fontVariationSettings: "'wdth' 100" }}>
             <p className="leading-[normal]">ABOUT</p>
           </div>
           <AboutDescription />
 
-          <div className="absolute flex h-[872.228px] items-center justify-center left-1/2 translate-x-[-50%] translate-y-[-50%] w-[1410px] z-[1]" style={{ top: "calc(50% + 0.182px)" }}>
+          <div className="absolute flex h-[436px] md:h-[654px] lg:h-[872.228px] items-center justify-center left-1/2 translate-x-[-50%] translate-y-[-50%] w-[705px] md:w-[1057px] lg:w-[1410px] z-[1] opacity-30 md:opacity-50 lg:opacity-100" style={{ top: "calc(50% + 0.182px)" }}>
             <div className="flex-none scale-y-[-100%]">
               <GoldenRatioCircles />
             </div>

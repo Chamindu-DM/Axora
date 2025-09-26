@@ -6,10 +6,12 @@ import Portfolio from "../components/Portfolio";
 import AboutUs from "../components/AboutUs";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
+import SmoothScrolling from "../components/SmoothScrolling";
 
 export default function App() {
     return (
         <div className="bg-white content-stretch flex flex-col isolate items-start justify-start relative size-full">
+            <SmoothScrolling />
             <Navigation />
             <HeroSection />
             <AboutUs />

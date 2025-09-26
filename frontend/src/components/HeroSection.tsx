@@ -30,7 +30,7 @@ function HeroButton({ onClick }: { onClick?: () => void }) {
 
   return (
     <div 
-      className="bg-white box-border content-stretch flex items-center justify-between min-h-10 min-w-[205px] pl-4 pr-2 py-2 relative rounded-[8px] shrink-0 w-[205px] cursor-pointer hover:bg-gray-50 transition-colors group" 
+      className="bg-white box-border content-stretch flex items-center justify-between min-h-10 min-w-[205px] pl-4 pr-2 py-2 relative rounded-[8px] shrink-0 w-full sm:w-[205px] cursor-pointer hover:bg-gray-50 transition-colors group"
       data-name="Hero Button"
       onClick={handleClick}
     >
@@ -48,15 +48,15 @@ function HeroTextContainer() {
   return (
     <div className="max-w-[990px] relative rounded-[8px] shrink-0 w-full" data-name="Hero Text Container">
       <div className="max-w-inherit relative size-full">
-        <div className="box-border content-stretch flex flex-col gap-6 items-start justify-start max-w-inherit p-[16px] relative w-full">
-          <div className="flex flex-col font-['Rethink_Sans'] font-bold justify-center leading-[80px] min-w-full relative shrink-0 text-[64px] text-white tracking-[-0.64px]" style={{ width: "min-content", fontVariationSettings: "'wdth' 100" }}>
+        <div className="box-border content-stretch flex flex-col gap-4 md:gap-6 items-start justify-start max-w-inherit p-[16px] md:p-[16px] relative w-full">
+          <div className="flex flex-col font-['Rethink_Sans'] font-bold justify-center leading-[40px] md:leading-[60px] lg:leading-[80px] min-w-full relative shrink-0 text-[32px] md:text-[48px] lg:text-[64px] text-white tracking-[-0.32px] md:tracking-[-0.48px] lg:tracking-[-0.64px]" style={{ width: "min-content", fontVariationSettings: "'wdth' 100" }}>
             <p className="mb-0">{`Engineering Design & Visualization`}</p>
             <p>You Can Rely On</p>
           </div>
-          <div className="flex flex-col font-['Instrument_Sans:Medium',_sans-serif] font-medium justify-center leading-[0] min-w-full relative shrink-0 text-[24px] text-white tracking-[0.24px]" style={{ width: "min-content", fontVariationSettings: "'wdth' 100" }}>
+          <div className="flex flex-col font-['Instrument_Sans:Medium',_sans-serif] font-medium justify-center leading-[0] min-w-full relative shrink-0 text-[18px] md:text-[20px] lg:text-[24px] text-white tracking-[0.18px] md:tracking-[0.20px] lg:tracking-[0.24px]" style={{ width: "min-content", fontVariationSettings: "'wdth' 100" }}>
             <p className="leading-[normal]">Delivering high-quality drafting, 3D modeling, and visualization solutions for Australia&apos;s construction and architectural industries.</p>
           </div>
-          <div className="content-stretch flex gap-2 items-start justify-start relative shrink-0">
+          <div className="content-stretch flex gap-2 items-start justify-start relative shrink-0 w-full sm:w-auto">
             <HeroButton />
           </div>
         </div>
@@ -67,9 +67,9 @@ function HeroTextContainer() {
 
 function HeroImage() {
   return (
-    <div className="aspect-[1440/693.223] bg-[position:0%_0%,_50%_50%] bg-[rgba(0,0,0,0.5)] bg-size-[auto,cover] relative rounded-[16px] shrink-0 w-full" data-name="Hero Image" style={{ backgroundImage: `url('${imgHeroImage}')` }}>
+    <div className="aspect-[4/3] sm:aspect-[16/10] lg:aspect-[1440/693.223] bg-[position:0%_0%,_50%_50%] bg-[rgba(0,0,0,0.5)] bg-size-[auto,cover] relative rounded-[16px] shrink-0 w-full" data-name="Hero Image" style={{ backgroundImage: `url('${imgHeroImage}')` }}>
       <div className="flex flex-col justify-end relative size-full">
-        <div className="aspect-[1440/693.223] box-border content-stretch flex flex-col gap-2 items-start justify-end p-[8px] relative size-full">
+        <div className="aspect-[4/3] sm:aspect-[16/10] lg:aspect-[1440/693.223] box-border content-stretch flex flex-col gap-2 items-start justify-end p-[8px] relative size-full">
           <HeroTextContainer />
         </div>
       </div>
@@ -81,7 +81,7 @@ export default function HeroSection() {
   return (
     <div id="hero" className="relative shrink-0 w-full z-[6]" data-name="Hero Section">
       <div className="relative size-full">
-        <div className="box-border content-stretch flex flex-col gap-2 items-start justify-start pb-4 pt-1 px-4 relative w-full">
+        <div className="box-border content-stretch flex flex-col gap-2 items-start justify-start pb-4 pt-1 px-2 sm:px-4 relative w-full">
           <HeroImage />
         </div>
       </div>

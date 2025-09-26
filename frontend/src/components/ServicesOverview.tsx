@@ -24,18 +24,18 @@ interface ServiceItemProps {
 function ServiceItem({ number, title, description, isExpanded, onToggle }: ServiceItemProps) {
   return (
     <div 
-      className={`content-stretch flex gap-4 items-start justify-start relative shrink-0 w-full cursor-pointer transition-all duration-300 ${isExpanded ? 'scale-105' : 'hover:scale-102'}`}
+      className={`content-stretch flex gap-2 md:gap-4 items-start justify-start relative shrink-0 w-full cursor-pointer transition-all duration-300 ${isExpanded ? 'scale-105' : 'hover:scale-102'}`}
       onClick={onToggle}
     >
-      <div className="basis-0 flex flex-col font-['Instrument_Sans:Regular',_sans-serif] font-normal grow justify-center leading-[0] max-w-[360px] min-h-px min-w-px relative shrink-0 text-[36px] text-[rgba(255,255,255,0.5)] text-right tracking-[-0.36px]" style={{ fontVariationSettings: "'wdth' 100" }}>
+      <div className="basis-0 flex flex-col font-['Instrument_Sans:Regular',_sans-serif] font-normal grow justify-center leading-[0] max-w-[80px] md:max-w-[360px] min-h-px min-w-px relative shrink-0 text-[18px] md:text-[24px] lg:text-[36px] text-[rgba(255,255,255,0.5)] text-right tracking-[-0.18px] md:tracking-[-0.24px] lg:tracking-[-0.36px]" style={{ fontVariationSettings: "'wdth' 100" }}>
         <p className="leading-[normal]">{number}</p>
       </div>
       <div className="basis-0 content-stretch flex flex-col gap-2 grow items-start justify-start min-h-px min-w-px relative shrink-0">
-        <div className={`flex flex-col font-['Instrument_Sans:Regular',_sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[64px] tracking-[-0.64px] w-full transition-colors duration-300 ${isExpanded ? 'text-blue-400' : 'text-white hover:text-blue-300'}`} style={{ fontVariationSettings: "'wdth' 100" }}>
-          <p className="leading-[normal]">{title}</p>
+        <div className={`flex flex-col font-['Instrument_Sans:Regular',_sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[28px] md:text-[44px] lg:text-[64px] tracking-[-0.28px] md:tracking-[-0.44px] lg:tracking-[-0.64px] w-full transition-colors duration-300 ${isExpanded ? 'text-blue-400' : 'text-white hover:text-blue-300'}`} style={{ fontVariationSettings: "'wdth' 100" }}>
+          <p className="leading-[normal] break-words">{title}</p>
         </div>
         {isExpanded && description && (
-          <div className="flex flex-col font-['Instrument_Sans:Regular',_sans-serif] font-normal justify-center leading-[1.4] relative shrink-0 text-[18px] text-[rgba(255,255,255,0.8)] w-full animate-fadeIn">
+          <div className="flex flex-col font-['Instrument_Sans:Regular',_sans-serif] font-normal justify-center leading-[1.4] relative shrink-0 text-[16px] md:text-[18px] text-[rgba(255,255,255,0.8)] w-full animate-fadeIn">
             <p>{description}</p>
           </div>
         )}
@@ -93,11 +93,11 @@ export default function ServicesOverview() {
       <div className="absolute inset-0 bg-black bg-opacity-10 transition-opacity duration-700"></div>
 
       <div className="flex flex-col items-center justify-center relative size-full">
-        <div className="box-border content-stretch flex flex-col gap-8 items-center justify-center px-8 py-20 relative w-full">
-          <div className="px-8 flex flex-col font-['Instrument_Sans:Medium',_sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[16px] text-white uppercase w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
+        <div className="box-border content-stretch flex flex-col gap-6 md:gap-8 items-center justify-center px-4 md:px-8 py-12 md:py-16 lg:py-20 relative w-full">
+          <div className="px-4 md:px-8 flex flex-col font-['Instrument_Sans:Medium',_sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[14px] md:text-[16px] text-white uppercase w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
             <p className="leading-[normal]">Our 3D Rendering Services</p>
           </div>
-          <div className="flex flex-col gap-8 w-full max-w-6xl">
+          <div className="flex flex-col gap-6 md:gap-8 w-full max-w-6xl">
             {services.map((service, index) => (
               <ServiceItem
                 key={index}

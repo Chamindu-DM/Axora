@@ -25,26 +25,26 @@ function Lightbox({ isOpen, currentIndex, images, onClose, onNext, onPrev }: Lig
   const currentImage = images[currentIndex];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90">
-      <div className="relative max-w-5xl max-h-[90vh] w-full mx-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 p-4">
+      <div className="relative max-w-5xl max-h-[90vh] w-full">
         <button
           onClick={onClose}
-          className="absolute -top-12 right-0 text-white text-2xl hover:text-gray-300 transition-colors"
+          className="absolute -top-8 md:-top-12 right-0 text-white text-xl md:text-2xl hover:text-gray-300 transition-colors"
         >
           ✕
         </button>
 
         <div className="bg-white rounded-lg overflow-hidden shadow-2xl">
           <div className="aspect-[4/3] bg-cover bg-center" style={{ backgroundImage: `url('${currentImage.src}')` }} />
-          <div className="p-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">{currentImage.title}</h3>
-            <p className="text-gray-600">{currentImage.description}</p>
+          <div className="p-4 md:p-6">
+            <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">{currentImage.title}</h3>
+            <p className="text-sm md:text-base text-gray-600">{currentImage.description}</p>
           </div>
         </div>
 
         <button
           onClick={onPrev}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-75 transition-all"
+          className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 md:p-3 rounded-full hover:bg-opacity-75 transition-all text-xl md:text-2xl"
           disabled={currentIndex === 0}
         >
           ‹
@@ -52,13 +52,13 @@ function Lightbox({ isOpen, currentIndex, images, onClose, onNext, onPrev }: Lig
 
         <button
           onClick={onNext}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-75 transition-all"
+          className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 md:p-3 rounded-full hover:bg-opacity-75 transition-all text-xl md:text-2xl"
           disabled={currentIndex === images.length - 1}
         >
           ›
         </button>
 
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        <div className="absolute bottom-2 md:bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
           {images.map((_, index) => (
             <div
               key={index}
@@ -234,14 +234,14 @@ export default function Portfolio() {
   };
 
   return (
-    <div data-layer="Portfolio Section" className="PortfolioSection self-stretch px-8 pt-30 pb-20 bg-white inline-flex flex-col justify-start items-start gap-8">
-      <div data-layer="Portfolio Title" className="PortfolioTitle self-stretch px-8 justify-center text-black text-6xl font-semibold font-['Instrument_Sans'] uppercase mb-8">
+    <div data-layer="Portfolio Section" className="PortfolioSection self-stretch px-4 md:px-8 py-12 md:py-20 bg-white inline-flex flex-col justify-center items-center gap-6 md:gap-8">
+      <div data-layer="Portfolio Title" className="PortfolioTitle self-stretch justify-center text-black text-3xl md:text-4xl lg:text-6xl font-semibold font-['Instrument_Sans'] uppercase leading-tight">
         Showcasing the craft<br/>behind our designs.
       </div>
 
       <div data-layer="Works Container" className="WorksContainer self-stretch flex flex-col justify-start items-start gap-1">
-        {/* First Row - 3 equal images */}
-        <div data-layer="Work Item" className="WorkItem self-stretch inline-flex justify-start items-start gap-1">
+        {/* First Row - 3 equal images on desktop, single column on mobile */}
+        <div data-layer="Work Item" className="WorkItem self-stretch flex flex-col md:flex-row justify-start items-start gap-1">
           <WorkImage
             src={portfolioImages[0].src}
             title={portfolioImages[0].title}
@@ -250,7 +250,7 @@ export default function Portfolio() {
             client={portfolioImages[0].client}
             year={portfolioImages[0].year}
             onClick={() => openLightbox(0)}
-            className="flex-1 h-[578px] inline-flex flex-col justify-end items-start"
+            className="flex-1 h-[300px] md:h-[400px] lg:h-[578px] inline-flex flex-col justify-end items-start"
           />
           <WorkImage
             src={portfolioImages[1].src}
@@ -260,7 +260,7 @@ export default function Portfolio() {
             client={portfolioImages[1].client}
             year={portfolioImages[1].year}
             onClick={() => openLightbox(1)}
-            className="flex-1 h-[578px] inline-flex flex-col justify-end items-start"
+            className="flex-1 h-[300px] md:h-[400px] lg:h-[578px] inline-flex flex-col justify-end items-start"
           />
           <WorkImage
             src={portfolioImages[2].src}
@@ -270,12 +270,12 @@ export default function Portfolio() {
             client={portfolioImages[2].client}
             year={portfolioImages[2].year}
             onClick={() => openLightbox(2)}
-            className="flex-1 h-[578px] inline-flex flex-col justify-end items-start"
+            className="flex-1 h-[300px] md:h-[400px] lg:h-[578px] inline-flex flex-col justify-end items-start"
           />
         </div>
 
-        {/* Second Row - 2 larger images */}
-        <div data-layer="Work Item" className="WorkItem self-stretch inline-flex justify-start items-start gap-1">
+        {/* Second Row - 2 larger images on desktop, single column on mobile */}
+        <div data-layer="Work Item" className="WorkItem self-stretch flex flex-col md:flex-row justify-start items-start gap-1">
           <WorkImage
             src={portfolioImages[3].src}
             title={portfolioImages[3].title}
@@ -284,7 +284,7 @@ export default function Portfolio() {
             client={portfolioImages[3].client}
             year={portfolioImages[3].year}
             onClick={() => openLightbox(3)}
-            className="flex-1 h-[870px] inline-flex flex-col justify-end items-start"
+            className="flex-1 h-[400px] md:h-[600px] lg:h-[870px] inline-flex flex-col justify-end items-start"
           />
           <WorkImage
             src={portfolioImages[4].src}
@@ -294,12 +294,12 @@ export default function Portfolio() {
             client={portfolioImages[4].client}
             year={portfolioImages[4].year}
             onClick={() => openLightbox(4)}
-            className="flex-1 h-[870px] inline-flex flex-col justify-end items-start"
+            className="flex-1 h-[400px] md:h-[600px] lg:h-[870px] inline-flex flex-col justify-end items-start"
           />
         </div>
 
-        {/* Third Row - 3 equal images */}
-        <div data-layer="Work Item" className="WorkItem self-stretch inline-flex justify-start items-start gap-1">
+        {/* Third Row - 3 equal images on desktop, single column on mobile */}
+        <div data-layer="Work Item" className="WorkItem self-stretch flex flex-col md:flex-row justify-start items-start gap-1">
           <WorkImage
             src={portfolioImages[5].src}
             title={portfolioImages[5].title}
@@ -308,7 +308,7 @@ export default function Portfolio() {
             client={portfolioImages[5].client}
             year={portfolioImages[5].year}
             onClick={() => openLightbox(5)}
-            className="flex-1 h-[578px] inline-flex flex-col justify-end items-start"
+            className="flex-1 h-[300px] md:h-[400px] lg:h-[578px] inline-flex flex-col justify-end items-start"
           />
           <WorkImage
             src={portfolioImages[6].src}
@@ -318,7 +318,7 @@ export default function Portfolio() {
             client={portfolioImages[6].client}
             year={portfolioImages[6].year}
             onClick={() => openLightbox(6)}
-            className="flex-1 h-[578px] inline-flex flex-col justify-end items-start"
+            className="flex-1 h-[300px] md:h-[400px] lg:h-[578px] inline-flex flex-col justify-end items-start"
           />
           <WorkImage
             src={portfolioImages[7].src}
@@ -328,7 +328,7 @@ export default function Portfolio() {
             client={portfolioImages[7].client}
             year={portfolioImages[7].year}
             onClick={() => openLightbox(7)}
-            className="flex-1 h-[578px] inline-flex flex-col justify-end items-start"
+            className="flex-1 h-[300px] md:h-[400px] lg:h-[578px] inline-flex flex-col justify-end items-start"
           />
         </div>
       </div>
