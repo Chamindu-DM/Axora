@@ -122,7 +122,7 @@ export default function Navigation() {
     };
 
     return (
-        <div className={`backdrop-blur-sm backdrop-filter bg-[rgba(255,255,255,0.5)] shrink-0 sticky top-0 w-full z-[7] transition-all duration-300 ${isScrolled ? 'shadow-lg' : ''}`} data-name="NavBar">
+        <nav className={`fixed top-0 left-0 right-0 backdrop-blur-sm backdrop-filter bg-white-50 w-full z-[1000] transition-all duration-300 ${isScrolled ? 'shadow-lg bg-[rgba(255,255,255,0.95)]' : ''}`} data-name="NavBar">
             <div aria-hidden="true" className="absolute border-[0px_0px_0.5px] border-[rgba(0,0,0,0.1)] border-solid inset-0 pointer-events-none" />
 
             {/* Desktop Navigation */}
@@ -149,7 +149,7 @@ export default function Navigation() {
 
             {/* Mobile Menu Overlay */}
             {isMobileMenuOpen && (
-                <div className="md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-lg">
+                <div className="md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-lg z-[999]">
                     <div className="flex flex-col items-center py-4 space-y-2">
                         <NavigationLink href="#portfolio" onMobileClick={closeMobileMenu}>Gallery</NavigationLink>
                         <NavigationLink href="#portfolio" onMobileClick={closeMobileMenu}>Cases</NavigationLink>
@@ -161,6 +161,6 @@ export default function Navigation() {
                     </div>
                 </div>
             )}
-        </div>
+        </nav>
     );
 }

@@ -10,7 +10,7 @@ import SmoothScrolling from "../components/SmoothScrolling";
 
 export default function App() {
     return (
-        <div className="bg-white content-stretch flex flex-col isolate items-start justify-start relative size-full main-container overflow-x-hidden max-w-full">
+        <div className="bg-white content-stretch flex flex-col isolate items-start justify-start relative size-full main-container overflow-x-hidden max-w-full pt-[72px]">
             <SmoothScrolling />
             <Navigation />
             <HeroSection />

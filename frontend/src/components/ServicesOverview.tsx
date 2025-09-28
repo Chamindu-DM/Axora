@@ -31,11 +31,22 @@ function ServiceItem({ number, title, description, isExpanded, onToggle }: Servi
         <p className="leading-[normal]">{number}</p>
       </div>
       <div className="basis-0 content-stretch flex flex-col gap-2 grow items-start justify-start min-h-px min-w-px relative shrink-0">
-        <div className={`flex flex-col font-['Instrument_Sans:Regular',_sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[28px] md:text-[44px] lg:text-[64px] tracking-[-0.28px] md:tracking-[-0.44px] lg:tracking-[-0.64px] w-full transition-colors duration-300 ${isExpanded ? 'text-blue-400' : 'text-white hover:text-blue-300'}`} style={{ fontVariationSettings: "'wdth' 100" }}>
+        <div
+          className={`flex flex-col font-['Instrument_Sans:Regular',_sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[28px] md:text-[44px] lg:text-[64px] tracking-[-0.28px] md:tracking-[-0.44px] lg:tracking-[-0.64px] w-full transition-all duration-300 ${
+            isExpanded 
+              ? 'text-white' 
+              : 'text-transparent hover:text-white'
+          }`}
+          style={{
+            fontVariationSettings: "'wdth' 100",
+            WebkitTextStroke: isExpanded ? 'none' : '1px white',
+            textStroke: isExpanded ? 'none' : '1px white'
+          }}
+        >
           <p className="leading-[normal] break-words">{title}</p>
         </div>
         {isExpanded && description && (
-          <div className="flex flex-col font-['Instrument_Sans:Regular',_sans-serif] font-normal justify-center leading-[1.4] relative shrink-0 text-[16px] md:text-[18px] text-[rgba(255,255,255,0.8)] w-full animate-fadeIn">
+          <div className="flex flex-col font-['Instrument_Sans:Regular',_sans-serif] font-normal justify-center leading-[1.4] relative shrink-0 text-[16px] md:text-[18px] text-[rgba(255,255,255,0.8)] w-full max-w-[480px] animate-fadeIn">
             <p>{description}</p>
           </div>
         )}
@@ -90,8 +101,7 @@ export default function ServicesOverview() {
       style={{ backgroundImage: `url('${currentBackground}')` }}
     >
       {/* Black overlay for better text visibility */}
-      <div className="absolute inset-0 bg-black-10 bg-opacity-10 transition-opacity duration-700"></div>
-
+        <div className="absolute inset-0 bg-black/60"></div>
       <div className="flex flex-col items-center justify-center relative size-full">
         <div className="box-border content-stretch flex flex-col gap-6 md:gap-8 items-center justify-center px-4 md:px-8 py-12 md:py-16 lg:py-20 relative w-full">
           <div className="px-4 md:px-8 flex flex-col font-['Instrument_Sans:Medium',_sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[14px] md:text-[16px] text-white uppercase w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
