@@ -13,7 +13,14 @@ const imgServicesSection = "https://images.unsplash.com/photo-1559625810-9f0c1e7
 interface LightboxProps {
   isOpen: boolean;
   currentIndex: number;
-  images: Array<{ src: string; title: string; description: string }>;
+  images: Array<{
+    src: string;
+    title: string;
+    description: string;
+    location?: string;
+    client?: string;
+    year?: string;
+  }>;
   onClose: () => void;
   onNext: () => void;
   onPrev: () => void;
@@ -24,48 +31,108 @@ function Lightbox({ isOpen, currentIndex, images, onClose, onNext, onPrev }: Lig
 
   const currentImage = images[currentIndex];
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 p-4">
-      <div className="relative max-w-5xl max-h-[90vh] w-full">
-        <button
-          onClick={onClose}
-          className="absolute -top-8 md:-top-12 right-0 text-white text-xl md:text-2xl hover:text-gray-300 transition-colors"
-        >
-          ✕
-        </button>
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
 
-        <div className="bg-white rounded-lg overflow-hidden shadow-2xl">
-          <div className="aspect-[4/3] bg-cover bg-center" style={{ backgroundImage: `url('${currentImage.src}')` }} />
-          <div className="p-4 md:p-6">
-            <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">{currentImage.title}</h3>
-            <p className="text-sm md:text-base text-gray-600">{currentImage.description}</p>
+  return (
+    <div
+      className="fixed inset-0 z-[1001] bg-black/50 inline-flex flex-col justify-center items-center gap-4 p-4"
+      onClick={handleBackdropClick}
+    >
+      <div className="w-[900px] max-w-[960px] rounded-2xl flex flex-col justify-start items-start overflow-hidden">
+        {/* Work Image Section */}
+        <div
+          className="self-stretch h-[462px] p-2 flex flex-col justify-start items-end bg-cover bg-center"
+          style={{ backgroundImage: `url('${currentImage.src}')` }}
+        >
+          {/* Close Button */}
+          <button
+            onClick={onClose}
+            className="p-1 bg-white rounded-lg inline-flex justify-start items-center gap-2 hover:bg-gray-100 transition-colors"
+            aria-label="Close lightbox"
+          >
+            <div className="w-6 h-6 flex items-center justify-center">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 3.5L3.5 10.5M3.5 3.5L10.5 10.5" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+          </button>
+        </div>
+
+        {/* Project Info Section */}
+        <div className="self-stretch p-4 bg-black/60 inline-flex justify-start items-start gap-4">
+          <div className="flex-1 max-w-96 inline-flex flex-col justify-start items-start gap-4">
+            <div className="self-stretch justify-center text-white text-2xl font-medium font-['Rethink_Sans'] tracking-tight">
+              {currentImage.title}
+            </div>
+            <div className="self-stretch flex flex-col justify-start items-start gap-1">
+              {currentImage.location && (
+                <div className="self-stretch inline-flex justify-start items-start gap-1">
+                  <div className="justify-center text-white/50 text-base font-medium font-['Instrument_Sans']">Location:</div>
+                  <div className="flex-1 justify-center text-white text-base font-medium font-['Instrument_Sans']">{currentImage.location}</div>
+                </div>
+              )}
+              {currentImage.client && (
+                <div className="self-stretch inline-flex justify-start items-start gap-1">
+                  <div className="justify-center text-white/50 text-base font-medium font-['Instrument_Sans']">Client:</div>
+                  <div className="flex-1 justify-center text-white text-base font-medium font-['Instrument_Sans']">{currentImage.client}</div>
+                </div>
+              )}
+              {currentImage.year && (
+                <div className="self-stretch inline-flex justify-start items-start gap-1">
+                  <div className="justify-center text-white/50 text-base font-medium font-['Instrument_Sans']">Project Year:</div>
+                  <div className="flex-1 justify-center text-white text-base font-medium font-['Instrument_Sans']">{currentImage.year}</div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Description Section */}
+          <div className="flex-1 self-stretch px-2 pb-2 inline-flex flex-col justify-start items-start gap-7">
+            <div className="self-stretch justify-center text-white text-base font-normal font-['Instrument_Sans']">
+              {currentImage.description}
+            </div>
           </div>
         </div>
+      </div>
 
+      {/* Pagination Container */}
+      <div className="inline-flex justify-start items-center gap-5">
+        {/* Previous Button */}
         <button
           onClick={onPrev}
-          className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 md:p-3 rounded-full hover:bg-opacity-75 transition-all text-xl md:text-2xl"
+          className="p-2 bg-white rounded-lg flex justify-center items-center disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-colors"
           disabled={currentIndex === 0}
         >
-          ‹
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 12L6 8L10 4" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
         </button>
 
-        <button
-          onClick={onNext}
-          className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 md:p-3 rounded-full hover:bg-opacity-75 transition-all text-xl md:text-2xl"
-          disabled={currentIndex === images.length - 1}
-        >
-          ›
-        </button>
-
-        <div className="absolute bottom-2 md:bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        {/* Dots Container */}
+        <div className="flex justify-start items-center">
           {images.map((_, index) => (
-            <div
-              key={index}
-              className={`w-2 h-2 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-white bg-opacity-50'}`}
-            />
+            <div key={index} className="w-6 h-6 flex items-center justify-center">
+              <div className={`w-2 h-2 rounded-full transition-colors ${
+                index === currentIndex ? 'bg-white' : 'bg-white/50'
+              }`} />
+            </div>
           ))}
         </div>
+
+        {/* Next Button */}
+        <button
+          onClick={onNext}
+          className="p-2 bg-white rounded-lg flex justify-center items-center disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-colors"
+          disabled={currentIndex === images.length - 1}
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 4L10 8L6 12" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
       </div>
     </div>
   );

@@ -39,8 +39,7 @@ function ServiceItem({ number, title, description, isExpanded, onToggle }: Servi
           }`}
           style={{
             fontVariationSettings: "'wdth' 100",
-            WebkitTextStroke: isExpanded ? 'none' : '1px white',
-            textStroke: isExpanded ? 'none' : '1px white'
+            WebkitTextStroke: isExpanded ? 'none' : '1px white'
           }}
         >
           <p className="leading-[normal] break-words">{title}</p>
