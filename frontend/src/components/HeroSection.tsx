@@ -67,8 +67,10 @@ function HeroTextContainer() {
 
 function HeroImage() {
   return (
-    <div className="h-full w-full bg-[position:0%_0%,_50%_50%] bg-[rgba(0,0,0,0.5)] bg-size-[auto,cover] relative rounded-[16px] shrink-0" data-name="Hero Image" style={{ backgroundImage: `url('${imgHeroImage}')` }}>
-      <div className="flex flex-col justify-end relative size-full">
+    <div className="h-full w-full bg-[position:0%_0%,_50%_50%] bg-size-[auto,cover] relative rounded-[16px] shrink-0" data-name="Hero Image" style={{ backgroundImage: `url('${imgHeroImage}')` }}>
+      {/* Black overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/40 rounded-[16px]"></div>
+      <div className="flex flex-col justify-end relative size-full z-10">
         <div className="box-border content-stretch flex flex-col gap-2 items-start justify-end p-[8px] relative size-full">
           <HeroTextContainer />
         </div>

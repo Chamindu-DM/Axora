@@ -1,8 +1,6 @@
 'use client';
 import { useState, useEffect, useRef } from "react";
 import svgPaths from "../imports/svg-inz3yplkns";
-import MouseFollower from "mouse-follower";
-import gsap from "gsap";
 
 function Icon() {
   return (
@@ -31,26 +29,12 @@ function Icon() {
   );
 }
 
-
 function AboutDescription() {
   const textRef = useRef<HTMLParagraphElement>(null);
   const lettersRef = useRef<HTMLSpanElement[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
-  const magnifierRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Initialize Mouse Follower only for this section
-    MouseFollower.registerGSAP(gsap);
-
-    const cursor = new MouseFollower({
-      container: document.body, // Use document.body instead of containerRef.current for better tracking
-      speed: 0.3,
-      ease: 'expo.out',
-      visible: false,
-      className: 'about-cursor',
-      innerClassName: 'about-cursor-inner'
-    });
-
     // Split text into individual letters
     if (textRef.current) {
       const text = textRef.current.textContent || '';
@@ -63,8 +47,10 @@ function AboutDescription() {
         word.split('').forEach((char, charIndex) => {
           const span = document.createElement('span');
           span.textContent = char;
-          span.style.opacity = '0.5';
-          span.style.transition = 'opacity 0.3s ease';
+          span.style.color = 'black'; // Start with black text
+          span.style.transition = 'color 0.3s ease, transform 0.3s ease';
+          span.style.display = 'inline-block';
+          span.style.transformOrigin = 'center bottom';
           span.className = 'letter-span';
           span.setAttribute('data-letter-index', (lettersRef.current.length).toString());
           textRef.current?.appendChild(span);
@@ -75,8 +61,8 @@ function AboutDescription() {
         if (wordIndex < words.length - 1) {
           const spaceSpan = document.createElement('span');
           spaceSpan.textContent = ' ';
-          spaceSpan.style.opacity = '0.5';
-          spaceSpan.style.transition = 'opacity 0.3s ease';
+          spaceSpan.style.color = 'black'; // Start with black text
+          spaceSpan.style.transition = 'color 0.3s ease';
           spaceSpan.className = 'letter-span space-span';
           spaceSpan.setAttribute('data-letter-index', (lettersRef.current.length).toString());
           textRef.current?.appendChild(spaceSpan);
@@ -85,107 +71,60 @@ function AboutDescription() {
       });
     }
 
-    // Create magnifier element
-    if (containerRef.current) {
-      const magnifier = document.createElement('div');
-      magnifier.className = 'text-magnifier';
-      magnifier.style.cssText = `
-        position: absolute;
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 10000;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        overflow: hidden;
-        background: rgba(0, 0, 0, 0.8);
-        border: 3px solid rgba(255, 255, 255, 0.3);
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-      `;
-
-      const magnifiedText = document.createElement('div');
-      magnifiedText.className = 'magnified-text';
-      magnifiedText.style.cssText = `
-        position: absolute;
-        white-space: pre-wrap;
-        font-size: 1.8em;
-        color: white;
-        font-weight: 500;
-        transform: translate(-50%, -50%);
-        left: 50%;
-        top: 50%;
-        text-align: center;
-        width: 180px;
-        height: 180px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        line-height: 1.2;
-        padding: 10px;
-        box-sizing: border-box;
-      `;
-
-      magnifier.appendChild(magnifiedText);
-      containerRef.current.appendChild(magnifier);
-      magnifierRef.current = magnifier;
-    }
-
     // Store current container ref for cleanup
     const currentContainer = containerRef.current;
 
-    // Mouse move handler for magnifier
+    // Mouse move handler for letter zoom effect
     const handleMouseMove = (e: MouseEvent) => {
-      if (!magnifierRef.current || !currentContainer) return;
+      if (!currentContainer) return;
 
       const rect = currentContainer.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
 
-      magnifierRef.current.style.left = `${x - 100}px`;
-      magnifierRef.current.style.top = `${y - 100}px`;
+      // Check each letter for proximity to cursor
+      lettersRef.current.forEach((letter) => {
+        if (!letter.classList.contains('space-span')) {
+          const letterRect = letter.getBoundingClientRect();
+          const containerRect = currentContainer.getBoundingClientRect();
 
-      // Get text under cursor
-      const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);
-      if (elementUnderCursor && elementUnderCursor.classList.contains('letter-span')) {
-        const magnifiedTextEl = magnifierRef.current.querySelector('.magnified-text') as HTMLElement;
-        if (magnifiedTextEl) {
-          // Get surrounding text
-          const letterIndex = parseInt(elementUnderCursor.getAttribute('data-letter-index') || '0');
-          const start = Math.max(0, letterIndex - 10);
-          const end = Math.min(lettersRef.current.length, letterIndex + 10);
+          const letterCenterX = letterRect.left + letterRect.width / 2 - containerRect.left;
+          const letterCenterY = letterRect.top + letterRect.height / 2 - containerRect.top;
 
-          let surroundingText = '';
-          for (let i = start; i < end; i++) {
-            surroundingText += lettersRef.current[i]?.textContent || '';
+          // Calculate distance from mouse to letter center
+          const distance = Math.sqrt(
+            Math.pow(mouseX - letterCenterX, 2) + Math.pow(mouseY - letterCenterY, 2)
+          );
+
+          // Maximum influence distance (adjust as needed)
+          const maxDistance = 80;
+
+          if (distance < maxDistance) {
+            // Calculate scale based on distance (closer = larger)
+            const scale = 1 + (maxDistance - distance) / maxDistance * 0.8; // Max scale of 1.8x
+            letter.style.transform = `scale(${scale})`;
+            letter.style.zIndex = '10';
+          } else {
+            letter.style.transform = 'scale(1)';
+            letter.style.zIndex = '1';
           }
-
-          magnifiedTextEl.textContent = surroundingText;
         }
-      }
+      });
     };
 
-    // Add hover effects for cursor and magnifier
-    const handleMouseEnter = () => {
-      cursor.show();
-      cursor.addState('-magnifier');
-      if (magnifierRef.current) {
-        magnifierRef.current.style.opacity = '1';
-      }
-    };
-
+    // Reset all letter scales when mouse leaves container
     const handleMouseLeave = () => {
-      cursor.hide();
-      cursor.removeState('-magnifier');
-      if (magnifierRef.current) {
-        magnifierRef.current.style.opacity = '0';
-      }
+      lettersRef.current.forEach((letter) => {
+        if (!letter.classList.contains('space-span')) {
+          letter.style.transform = 'scale(1)';
+          letter.style.zIndex = '1';
+        }
+      });
     };
 
     if (currentContainer) {
-      currentContainer.addEventListener('mouseenter', handleMouseEnter);
-      currentContainer.addEventListener('mouseleave', handleMouseLeave);
       currentContainer.addEventListener('mousemove', handleMouseMove);
+      currentContainer.addEventListener('mouseleave', handleMouseLeave);
     }
 
     let ticking = false;
@@ -225,12 +164,12 @@ function AboutDescription() {
             const totalLetters = lettersRef.current.length;
             const lettersToHighlight = Math.floor(scrollProgress * totalLetters);
 
-            // Update letter opacities
+            // Update letter colors instead of opacity
             lettersRef.current.forEach((letter, index) => {
               if (index < lettersToHighlight) {
-                letter.style.opacity = '1';
+                letter.style.color = 'white';
               } else {
-                letter.style.opacity = '0.5';
+                letter.style.color = 'black';
               }
             });
           }
@@ -249,14 +188,9 @@ function AboutDescription() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
       if (currentContainer) {
-        currentContainer.removeEventListener('mouseenter', handleMouseEnter);
-        currentContainer.removeEventListener('mouseleave', handleMouseLeave);
         currentContainer.removeEventListener('mousemove', handleMouseMove);
+        currentContainer.removeEventListener('mouseleave', handleMouseLeave);
       }
-      if (magnifierRef.current) {
-        magnifierRef.current.remove();
-      }
-      cursor.destroy();
     };
   }, []);
 
@@ -267,7 +201,7 @@ function AboutDescription() {
           <div className="w-full relative max-w-7xl mx-auto">
             <p
               ref={textRef}
-              className="leading-relaxed text-3xl sm:text-4xl text-white font-['Instrument_Sans:Regular',_sans-serif] font-normal tracking-tight cursor-none w-full break-words"
+              className="leading-relaxed text-3xl sm:text-4xl text-white font-['Instrument_Sans:Regular',_sans-serif] font-normal tracking-tight w-full break-words"
               style={{
                 fontVariationSettings: "'wdth' 100",
                 wordWrap: 'break-word',

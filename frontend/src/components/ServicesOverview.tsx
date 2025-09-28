@@ -90,7 +90,7 @@ export default function ServicesOverview() {
       style={{ backgroundImage: `url('${currentBackground}')` }}
     >
       {/* Black overlay for better text visibility */}
-      <div className="absolute inset-0 bg-black bg-opacity-10 transition-opacity duration-700"></div>
+      <div className="absolute inset-0 bg-black-10 bg-opacity-10 transition-opacity duration-700"></div>
 
       <div className="flex flex-col items-center justify-center relative size-full">
         <div className="box-border content-stretch flex flex-col gap-6 md:gap-8 items-center justify-center px-4 md:px-8 py-12 md:py-16 lg:py-20 relative w-full">
