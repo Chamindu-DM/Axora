@@ -341,15 +341,6 @@ export default function Contact() {
                   <p className="text-xl md:text-2xl">Melbourne, Australia</p>
                 </div>
               </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-white uppercase mb-4 font-['Instrument_Sans',_sans-serif]">Business Hours</h3>
-                <div className="space-y-2 text-gray-300 font-['Instrument_Sans',_sans-serif]">
-                  <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                  <p>Saturday: 10:00 AM - 4:00 PM</p>
-                  <p>Sunday: Closed</p>
-                </div>
-              </div>
             </div>
           </div>
 
