@@ -134,3 +134,34 @@
     overflow-x: hidden;
   }
 }
+
+/* Custom animations for Services Overview */
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToLeft {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.animate-slideInFromRight {
+  animation: slideInFromRight 0.7s ease-out forwards;
+}
+
+.animate-slideOutToLeft {
+  animation: slideOutToLeft 0.7s ease-out forwards;
+}

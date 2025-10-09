@@ -14,10 +14,10 @@ export default function App() {
             <SmoothScrolling />
             <Navigation />
             <HeroSection />
-            <AboutUs />
             <ServicesOverview />
             <Portfolio />
             <ServicesDetail />
+            <AboutUs />
             <Contact />
             <Footer />
         </div>

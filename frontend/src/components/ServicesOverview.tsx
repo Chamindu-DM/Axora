@@ -18,14 +18,16 @@ interface ServiceItemProps {
   title: string;
   description?: string;
   isExpanded?: boolean;
-  onToggle?: () => void;
+  onHover?: () => void;
+  onLeave?: () => void;
 }
 
-function ServiceItem({ number, title, description, isExpanded, onToggle }: ServiceItemProps) {
+function ServiceItem({ number, title, description, isExpanded, onHover, onLeave }: ServiceItemProps) {
   return (
     <div 
       className={`content-stretch flex gap-2 md:gap-4 items-start justify-start relative shrink-0 w-full cursor-pointer transition-all duration-300 ${isExpanded ? 'scale-105' : 'hover:scale-102'}`}
-      onClick={onToggle}
+      onMouseEnter={onHover}
+      onMouseLeave={onLeave}
     >
       <div className="basis-0 flex flex-col font-['Instrument_Sans:Regular',_sans-serif] font-normal grow justify-center leading-[0] max-w-[80px] md:max-w-[360px] min-h-px min-w-px relative shrink-0 text-[18px] md:text-[24px] lg:text-[36px] text-[rgba(255,255,255,0.5)] text-right tracking-[-0.18px] md:tracking-[-0.24px] lg:tracking-[-0.36px]" style={{ fontVariationSettings: "'wdth' 100" }}>
         <p className="leading-[normal]">{number}</p>
@@ -84,24 +86,71 @@ const services = [
 
 export default function ServicesOverview() {
   const [expandedService, setExpandedService] = useState<number | null>(null);
+  const [previousService, setPreviousService] = useState<number | null>(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const handleServiceToggle = (index: number) => {
-    setExpandedService(expandedService === index ? null : index);
+  const handleServiceHover = (index: number) => {
+    if (expandedService !== index) {
+      setPreviousService(expandedService);
+      setIsTransitioning(true);
+      setExpandedService(index);
+      
+      // Reset transition state after animation completes
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setPreviousService(null);
+      }, 700);
+    }
   };
 
-  // Get current background image
+  const handleServiceLeave = () => {
+    if (expandedService !== null) {
+      setPreviousService(expandedService);
+      setIsTransitioning(true);
+      setExpandedService(null);
+      
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setPreviousService(null);
+      }, 700);
+    }
+  };
+
+  // Get current and previous background images
   const currentBackground = expandedService !== null ? serviceBackgrounds[expandedService] : defaultBackground;
+  const previousBackground = previousService !== null ? serviceBackgrounds[previousService] : defaultBackground;
 
   return (
     <div
       id="services"
-      className="relative shrink-0 w-full z-[4] bg-cover bg-center bg-no-repeat transition-all duration-700 ease-in-out"
+      className="relative shrink-0 w-full z-[4] overflow-hidden"
       data-name="Services Section"
-      style={{ backgroundImage: `url('${currentBackground}')` }}
     >
+      {/* Background container with sliding animation */}
+      <div className="absolute inset-0">
+        {/* Previous background (slides out to the left) */}
+        {isTransitioning && previousService !== null && (
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 ease-out transform translate-x-0 animate-slideOutToLeft"
+            style={{ backgroundImage: `url('${previousBackground}')` }}
+          />
+        )}
+        
+        {/* Current background (slides in from the right or stays in place) */}
+        <div
+          className={`absolute inset-0 bg-cover bg-center bg-no-repeat ${
+            isTransitioning 
+              ? 'transform translate-x-full animate-slideInFromRight' 
+              : 'transform translate-x-0 transition-transform duration-700 ease-out'
+          }`}
+          style={{ backgroundImage: `url('${currentBackground}')` }}
+        />
+      </div>
+
       {/* Black overlay for better text visibility */}
-        <div className="absolute inset-0 bg-black/60"></div>
-      <div className="flex flex-col items-center justify-center relative size-full">
+      <div className="absolute inset-0 bg-black/60 z-10"></div>
+      
+      <div className="flex flex-col items-center justify-center relative size-full z-20">
         <div className="box-border content-stretch flex flex-col gap-6 md:gap-8 items-center justify-center px-4 md:px-8 py-12 md:py-16 lg:py-20 relative w-full">
           <div className="px-4 md:px-8 flex flex-col font-['Instrument_Sans:Medium',_sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[14px] md:text-[16px] text-white uppercase w-full" style={{ fontVariationSettings: "'wdth' 100" }}>
             <p className="leading-[normal]">Our 3D Rendering Services</p>
@@ -114,7 +163,8 @@ export default function ServicesOverview() {
                 title={service.title}
                 description={service.description}
                 isExpanded={expandedService === index}
-                onToggle={() => handleServiceToggle(index)}
+                onHover={() => handleServiceHover(index)}
+                onLeave={handleServiceLeave}
               />
             ))}
           </div>
