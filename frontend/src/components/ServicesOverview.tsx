@@ -3,11 +3,11 @@ import { useState } from "react";
 
 // Background images for each service
 const serviceBackgrounds = [
-  "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3", // CAD Drafting - architectural drawings
-  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3", // 3D Modeling - modern building
+  "https://images.unsplash.com/photo-1600869009498-8d429f88d4f5?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3", // CAD Drafting - architectural drawings
+  "https://images.unsplash.com/photo-1616344787023-a1829b69beea?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3", // 3D Modeling - modern building
   "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3", // Rendering - architectural visualization
   "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3", // BOQ & Estimating - construction site
-  "https://images.unsplash.com/photo-1581094289475-9a2a8dc775d2?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3"  // Structural Analysis - steel structure
+  "https://images.unsplash.com/photo-1754304342321-2b4b9ed3fd2a?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3"  // Structural Analysis - steel structure
 ];
 
 // Default background image
