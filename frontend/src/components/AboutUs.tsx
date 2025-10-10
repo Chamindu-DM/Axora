@@ -33,7 +33,7 @@ function AboutDescription() {
         // Add space after each word (except the last one)
         if (wordIndex < words.length - 1) {
           const spaceSpan = document.createElement('span');
-          spaceSpan.textContent = ' ';
+          spaceSpan.textContent = '\u00A0'; // Use non-breaking space to prevent word breaking
           spaceSpan.style.color = '#999999'; // Start with gray text (black-10 equivalent)
           spaceSpan.style.transition = 'color 0.3s ease';
           spaceSpan.className = 'letter-span space-span';
@@ -175,9 +175,11 @@ function AboutDescription() {
               className="leading-relaxed text-3xl sm:text-4xl font-['Instrument_Sans:Regular',_sans-serif] font-normal tracking-tight w-full text-left"
               style={{
                 fontVariationSettings: "'wdth' 100",
-                wordWrap: 'break-word',
-                overflowWrap: 'break-word',
-                hyphens: 'none'
+                wordWrap: 'normal',
+                overflowWrap: 'normal',
+                hyphens: 'none',
+                wordBreak: 'normal',
+                textAlign: 'left'
               }}
             >
               At Axora Engineering, we specialize in transforming ideas into precise, visual, and build-ready solutions. With expertise across drafting, 3D modeling, rendering, and structural analysis, we empower architects, builders, and developers to streamline projects, cut costs, and deliver outstanding results.
