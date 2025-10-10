@@ -172,12 +172,12 @@ function AboutDescription() {
           <div className="w-full relative max-w-7xl mx-auto">
             <p
               ref={textRef}
-              className="leading-relaxed text-3xl sm:text-4xl font-['Instrument_Sans:Regular',_sans-serif] font-normal tracking-tight w-full break-words"
+              className="leading-relaxed text-3xl sm:text-4xl font-['Instrument_Sans:Regular',_sans-serif] font-normal tracking-tight w-full text-left"
               style={{
                 fontVariationSettings: "'wdth' 100",
                 wordWrap: 'break-word',
                 overflowWrap: 'break-word',
-                hyphens: 'auto'
+                hyphens: 'none'
               }}
             >
               At Axora Engineering, we specialize in transforming ideas into precise, visual, and build-ready solutions. With expertise across drafting, 3D modeling, rendering, and structural analysis, we empower architects, builders, and developers to streamline projects, cut costs, and deliver outstanding results.
@@ -201,11 +201,89 @@ function GoldenRatioCircles() {
   );
 }
 
+function ParallaxImages() {
+  const image1Ref = useRef<HTMLImageElement>(null);
+  const image2Ref = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+
+          // Different parallax speeds for each image
+          if (image1Ref.current) {
+            // Image 1 moves slower (0.3x speed)
+            const translateY1 = scrollY * 0.3;
+            image1Ref.current.style.transform = `translateY(${translateY1}px) rotate(1.67deg)`;
+          }
+
+          if (image2Ref.current) {
+            // Image 2 moves faster (0.7x speed)
+            const translateY2 = scrollY * 0.7;
+            image2Ref.current.style.transform = `translateY(${translateY2}px) rotate(-1deg)`;
+          }
+
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  return (
+    <>
+      {/* Image 1 - Top right */}
+      <img
+        ref={image1Ref}
+        className="w-64 h-36 absolute origin-top-left rounded-2xl shadow-[0px_4px_16px_0px_rgba(0,0,0,0.25)] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] shadow-[0px_4px_24px_0px_rgba(0,0,0,0.25)] shadow-[0px_16px_40px_0px_rgba(0,0,0,0.15)] border border-black/20 z-[4]"
+        style={{
+          right: '60px',
+          top: '50px',
+          transform: 'rotate(1.67deg)'
+        }}
+        src="/images/image1.webp"
+        alt="Axora Engineering Project 1"
+      />
+
+      {/* Image 2 - Bottom left */}
+      <img
+        ref={image2Ref}
+        className="w-64 h-36 absolute origin-top-left rounded-2xl shadow-[0px_4px_16px_0px_rgba(0,0,0,0.25)] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.25)] shadow-[0px_4px_24px_0px_rgba(0,0,0,0.25)] shadow-[0px_16px_40px_0px_rgba(0,0,0,0.15)] border border-black/20 z-[4]"
+        style={{
+          left: '60px',
+          top: '-100px',
+          transform: 'rotate(-1deg)'
+        }}
+        src="/images/image2.webp"
+        alt="Axora Engineering Project 2"
+      />
+    </>
+  );
+}
+
 export default function AboutUs() {
   return (
-    <div id="about" className="bg-white relative shrink-0 w-full z-[5]">
-      <div className="flex flex-col items-center justify-center overflow-hidden relative size-full">
+    <div id="about" className="bg-white relative shrink-0 w-full z-[5] overflow-hidden">
+      <div className="flex flex-col items-center justify-center relative size-full">
         <div className="box-border content-stretch flex flex-col gap-6 md:gap-8 isolate items-center justify-center px-4 md:px-8 py-[100px] md:py-[150px] lg:py-[200px] relative w-full">
+
+          {/* Background zinc area */}
+          <div className="w-[1410px] h-[872.23px] absolute left-[15px] top-[-99.93px] z-[0]">
+            <div className="w-full h-full rounded-lg" />
+          </div>
+
+          {/* Parallax Images */}
+          <ParallaxImages />
+
           <div className="px-4 md:px-8 flex flex-col font-['Instrument_Sans:Medium',_sans-serif] font-medium justify-center leading-[0] min-w-full relative shrink-0 text-[14px] md:text-[16px] text-black uppercase z-[3]" style={{ width: "min-content", fontVariationSettings: "'wdth' 100" }}>
             <p className="leading-[normal]">ABOUT</p>
           </div>
@@ -221,4 +299,3 @@ export default function AboutUs() {
     </div>
   );
 }
-
