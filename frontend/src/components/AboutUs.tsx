@@ -1,33 +1,6 @@
 'use client';
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import svgPaths from "../imports/svg-inz3yplkns";
-
-function Icon() {
-  return (
-    <div className="absolute left-1/2 size-8 top-1/2 translate-x-[-50%] translate-y-[-50%]" data-name="Icon">
-      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 32 32">
-        <g id="Icon">
-          <g filter="url(#filter0_d_1_916)" id="Arrow">
-            <path clipRule="evenodd" d={svgPaths.p5dc8900} fill="var(--fill-0, black)" fillRule="evenodd" />
-            <path d={svgPaths.pda09c00} stroke="var(--stroke-0, white)" />
-          </g>
-        </g>
-        <defs>
-          <filter colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse" height="21.9565" id="filter0_d_1_916" width="15.4354" x="8" y="6.39592">
-            <feFlood floodOpacity="0" result="BackgroundImageFix" />
-            <feColorMatrix in="SourceAlpha" result="hardAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
-            <feOffset dy="1" />
-            <feGaussianBlur stdDeviation="1" />
-            <feComposite in2="hardAlpha" operator="out" />
-            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4049 0" />
-            <feBlend in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_1_916" />
-            <feBlend in="SourceGraphic" in2="effect1_dropShadow_1_916" mode="normal" result="shape" />
-          </filter>
-        </defs>
-      </svg>
-    </div>
-  );
-}
 
 function AboutDescription() {
   const textRef = useRef<HTMLParagraphElement>(null);
@@ -44,10 +17,10 @@ function AboutDescription() {
       // Split by words first, then by letters to maintain word spacing
       const words = text.split(' ');
       words.forEach((word, wordIndex) => {
-        word.split('').forEach((char, charIndex) => {
+        word.split('').forEach((char) => {
           const span = document.createElement('span');
           span.textContent = char;
-          span.style.color = 'black'; // Start with black text
+          span.style.color = '#999999'; // Start with gray text (black-10 equivalent)
           span.style.transition = 'color 0.3s ease, transform 0.3s ease';
           span.style.display = 'inline-block';
           span.style.transformOrigin = 'center bottom';
@@ -61,7 +34,7 @@ function AboutDescription() {
         if (wordIndex < words.length - 1) {
           const spaceSpan = document.createElement('span');
           spaceSpan.textContent = ' ';
-          spaceSpan.style.color = 'black'; // Start with black text
+          spaceSpan.style.color = '#999999'; // Start with gray text (black-10 equivalent)
           spaceSpan.style.transition = 'color 0.3s ease';
           spaceSpan.className = 'letter-span space-span';
           spaceSpan.setAttribute('data-letter-index', (lettersRef.current.length).toString());
@@ -139,8 +112,6 @@ function AboutDescription() {
 
             // Calculate when the container enters and exits the viewport
             const containerTop = containerRect.top;
-            const containerBottom = containerRect.bottom;
-            const containerHeight = containerRect.height;
 
             // Animation starts when container is 80% visible and completes when it's fully in view
             const startPoint = viewportHeight * 0.8;
@@ -167,9 +138,9 @@ function AboutDescription() {
             // Update letter colors instead of opacity
             lettersRef.current.forEach((letter, index) => {
               if (index < lettersToHighlight) {
-                letter.style.color = 'white';
+                letter.style.color = '#000000'; // Change to pure black when scrolling
               } else {
-                letter.style.color = 'black';
+                letter.style.color = '#999999'; // Keep gray for unscrolled letters
               }
             });
           }
@@ -201,7 +172,7 @@ function AboutDescription() {
           <div className="w-full relative max-w-7xl mx-auto">
             <p
               ref={textRef}
-              className="leading-relaxed text-3xl sm:text-4xl text-white font-['Instrument_Sans:Regular',_sans-serif] font-normal tracking-tight w-full break-words"
+              className="leading-relaxed text-3xl sm:text-4xl font-['Instrument_Sans:Regular',_sans-serif] font-normal tracking-tight w-full break-words"
               style={{
                 fontVariationSettings: "'wdth' 100",
                 wordWrap: 'break-word',
@@ -223,7 +194,7 @@ function GoldenRatioCircles() {
     <div className="h-[872.228px] relative w-[1410px]" data-name="Golden Ratio Circles">
       <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1410 873">
         <g id="Golden Ratio Circles">
-          <path d={svgPaths.p3ce85280} fill="var(--fill-0, #333333)" id="Union" />
+          <path d={svgPaths.p3ce85280} fill="var(--fill-0, #999999)" id="Union" />
         </g>
       </svg>
     </div>
@@ -232,15 +203,15 @@ function GoldenRatioCircles() {
 
 export default function AboutUs() {
   return (
-    <div id="about" className="bg-black relative shrink-0 w-full z-[5]">
+    <div id="about" className="bg-white relative shrink-0 w-full z-[5]">
       <div className="flex flex-col items-center justify-center overflow-hidden relative size-full">
         <div className="box-border content-stretch flex flex-col gap-6 md:gap-8 isolate items-center justify-center px-4 md:px-8 py-[100px] md:py-[150px] lg:py-[200px] relative w-full">
-          <div className="px-4 md:px-8 flex flex-col font-['Instrument_Sans:Medium',_sans-serif] font-medium justify-center leading-[0] min-w-full relative shrink-0 text-[14px] md:text-[16px] text-white uppercase z-[3]" style={{ width: "min-content", fontVariationSettings: "'wdth' 100" }}>
+          <div className="px-4 md:px-8 flex flex-col font-['Instrument_Sans:Medium',_sans-serif] font-medium justify-center leading-[0] min-w-full relative shrink-0 text-[14px] md:text-[16px] text-black uppercase z-[3]" style={{ width: "min-content", fontVariationSettings: "'wdth' 100" }}>
             <p className="leading-[normal]">ABOUT</p>
           </div>
           <AboutDescription />
 
-          <div className="absolute flex h-[436px] md:h-[654px] lg:h-[872.228px] items-center justify-center left-1/2 translate-x-[-50%] translate-y-[-50%] w-[705px] md:w-[1057px] lg:w-[1410px] z-[1] opacity-30 md:opacity-50 lg:opacity-100" style={{ top: "calc(50% + 0.182px)" }}>
+          <div className="absolute flex h-[436px] md:h-[654px] lg:h-[872.228px] items-center justify-center left-1/2 translate-x-[-50%] translate-y-[-50%] w-[705px] md:w-[1057px] lg:w-[1410px] z-[1] opacity-10 md:opacity-10 lg:opacity-10" style={{ top: "calc(50% + 0.182px)" }}>
             <div className="flex-none scale-y-[-100%]">
               <GoldenRatioCircles />
             </div>
@@ -250,3 +221,4 @@ export default function AboutUs() {
     </div>
   );
 }
+
