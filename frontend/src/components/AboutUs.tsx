@@ -108,7 +108,7 @@ function ParallaxImages() {
                 className={`${commonImageClasses} ${transitionClass}`}
                 style={{ top: '75%', left: '25%', transform: 'rotate(8deg)' }}
                 // Use your actual image paths
-                src="/images/image4.webp" // Re-using the interior shot
+                src="/images/image4.jpg" // Re-using the interior shot
                 alt="Interior living space design by Axora Engineering"
             />
         </div>
