@@ -1,0 +1,54 @@
+---
+deployment:
+  tasks:
+    # Set paths
+    - export DEPLOYPATH=/home/$USER/public_html
+    - export NODEPATH=/home/$USER/nodevenv/public_html/$NODE_VERSION/bin
+    - export PATH=$NODEPATH:$PATH
+    
+    # Build the frontend application
+    - cd $DEPLOYPATH/frontend
+    - npm ci --only=production
+    - npm run build
+    
+    # Deploy built files to web root
+    - |
+      if [ -d "out" ]; then
+        # Static export deployment
+        cp -r out/* $DEPLOYPATH/
+        echo "Static files deployed"
+      elif [ -d ".next" ]; then
+        # Node.js deployment
+        cd $DEPLOYPATH
+        cp -r frontend/.next ./
+        cp -r frontend/public/* ./ 2>/dev/null || true
+        cp frontend/package.json ./
+        cp frontend/next.config.* ./ 2>/dev/null || true
+        
+        # Install production dependencies in root
+        npm ci --only=production
+        echo "Node.js app deployed"
+      fi
+    
+    # Create .htaccess
+    - cd $DEPLOYPATH
+    - |
+      cat > .htaccess << 'EOF'
+      RewriteEngine On
+      RewriteCond %{REQUEST_FILENAME} !-f
+      RewriteCond %{REQUEST_FILENAME} !-d
+      RewriteRule . /index.html [L]
+      
+      <IfModule mod_deflate.c>
+        AddOutputFilterByType DEFLATE text/css application/javascript
+      </IfModule>
+      EOF
+    
+    # Set permissions
+    - find $DEPLOYPATH -name "*.html" -o -name "*.css" -o -name "*.js" | xargs chmod 644
+    - find $DEPLOYPATH -type d | xargs chmod 755
+    
+    # Clean up
+    - rm -rf frontend
+    
+    - echo "Deployment completed at $(date)"
