@@ -229,13 +229,30 @@ export default function Contact() {
 
     setIsSubmitting(true);
 
-    // Simulate form submission
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          service: formData.service,
+          projectDetails: formData.projectDetails,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send email');
+      }
+
       setIsSubmitted(true);
       console.log("Form submitted:", formData);
     } catch (error) {
       console.error("Form submission error:", error);
+      alert('Failed to send your message. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
